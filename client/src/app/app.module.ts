@@ -13,6 +13,7 @@ import { RegistrationComponent } from './authenication/registration/registration
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
 import { ProfileComponent } from './profile/profile.component';
+import {AuthenticationGuard} from "./security/authentication.guard";
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
