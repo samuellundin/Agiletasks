@@ -8,13 +8,17 @@ import { FooterComponent } from './core/footer/footer.component';
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './authenication/login/login.component';
+import { RegistrationComponent } from './authenication/registration/registration.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
