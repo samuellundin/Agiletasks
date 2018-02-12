@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './authenication/login/login.component';
 import { RegistrationComponent } from './authenication/registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectComponent } from './project/project.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent,
     FooterComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProjectComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
