@@ -1,6 +1,6 @@
-package model;
+package com.agiletasks.model;
 
-import entity.User;
+import com.agiletasks.entity.User;
 
 public class UserModel {
 

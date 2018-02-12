@@ -1,10 +1,10 @@
-package service;
+package com.agiletasks.service;
 
-import entity.User;
-import model.UserModel;
+import com.agiletasks.entity.User;
+import com.agiletasks.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import com.agiletasks.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

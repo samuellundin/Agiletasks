@@ -1,6 +1,6 @@
-package entity;
+package com.agiletasks.entity;
 
-import model.UserModel;
+import com.agiletasks.model.UserModel;
 
 import javax.persistence.*;
 
