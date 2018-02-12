@@ -1,5 +1,7 @@
 package entity;
 
+import model.UserModel;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,12 +28,12 @@ public class User {
     @Column(name = "image")
     private String image;
 
-    public User(String email, String password, String firstName, String lastName, String image) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.image = image;
+    public User(UserModel userModel) {
+        this.email = userModel.getEmail();
+        this.password = userModel.getPassword();
+        this.firstName = userModel.getFirstName();
+        this.lastName = userModel.getLastName();
+        this.image = userModel.getImage();
     }
 
     public User() {}
