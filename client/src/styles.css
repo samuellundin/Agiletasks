@@ -3,5 +3,9 @@ html, body {
 }
 
 .container {
-  height: calc(100% - 107px);
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: calc(100% - 156px);
 }
+
+
