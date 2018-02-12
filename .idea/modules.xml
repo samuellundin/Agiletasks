@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Agiletasks.iml" filepath="$PROJECT_DIR$/.idea/Agiletasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Agiletasks.iml" filepath="$PROJECT_DIR$/Agiletasks.iml" />
     </modules>
   </component>
 </project>
