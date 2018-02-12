@@ -8,6 +8,8 @@ import { FooterComponent } from './core/footer/footer.component';
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './authenication/login/login.component';
+import { RegistrationComponent } from './authenication/registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
@@ -16,7 +18,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    FooterComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
