@@ -36,4 +36,8 @@ public class UserService {
         User user = userRepository.save(new User(userModel));
         return new UserModel(user);
     }
+
+    public UserModel getUserByEmail(String email) {
+        return new UserModel(userRepository.findByEmail(email));
+    }
 }

@@ -3,13 +3,17 @@
   <form>
     <div class="form-group">
       <label for="email">Email: </label>
-      <input class="form-control" id="email" type="text" >
+      <input class="form-control" id="email" type="text" [(ngModel)]="model.email" #email="ngModel" name="email">
     </div>
     <div class="form-group">
       <label for="password">Password: </label>
-      <input class="form-control" id="password"  type="text">
+      <input class="form-control" id="password" type="password" [(ngModel)]="model.password" #password="ngModel" name="password">
     </div>
+    <button type="button" class="btn btn-primary form-control mb-2" (click)="login()">Login</button>
   </form>
+  <div *ngIf="unauthorized" class="alert alert-danger">
+    Email or password incorrect
+  </div>
   <div class="text-center">
     <p>Don't have an account? <a routerLink="/register">Register</a></p>
   </div>

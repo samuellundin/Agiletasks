@@ -31,4 +31,10 @@ public class UserController {
         UserModel createUser = userService.registerUser(userModel);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
+
+    @GetMapping("/{email}/")
+    public ResponseEntity<UserModel> getUserByEmail(@PathVariable("email") String email) {
+        return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
+
 }
