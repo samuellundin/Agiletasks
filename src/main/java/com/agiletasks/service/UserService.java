@@ -2,9 +2,12 @@ package com.agiletasks.service;
 
 import com.agiletasks.entity.User;
 import com.agiletasks.model.UserModel;
+import com.agiletasks.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.agiletasks.repository.UserRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +16,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository userRepository;
 
     public List<UserModel> getAllUsers() {
         List<User> users = userRepository.findAll();
@@ -22,5 +25,10 @@ public class UserService {
             userModels.add(new UserModel(user));
         }
         return userModels;
+    }
+
+    public UserModel registerUser(UserModel userModel) {
+     User user = userRepository.save(new User(userModel));
+     return new UserModel(user);
     }
 }

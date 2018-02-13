@@ -14,6 +14,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationGuard} from "./security/authentication.guard";
+import {UserService} from "./service/user.service";
+import {ProjectService} from "./service/project.service";
 
 
 @NgModule({
@@ -34,7 +36,7 @@ import {AuthenticationGuard} from "./security/authentication.guard";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthenticationGuard],
+  providers: [AuthenticationGuard, UserService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
