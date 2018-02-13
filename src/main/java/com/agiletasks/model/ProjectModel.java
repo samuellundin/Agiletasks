@@ -1,41 +1,22 @@
-package com.agiletasks.entity;
+package com.agiletasks.model;
 
-import com.agiletasks.model.ProjectModel;
-import javax.persistence.*;
+import com.agiletasks.entity.Project;
 
+public class ProjectModel {
 
-@Entity
-@Table(name = "projects")
-public class Project {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_id")
     private Long id;
-
-    @Column(name = "project_name")
     private String projectName;
-
-    @Column(name = "start_date")
     private String startDate;
-
-    @Column(name = "end_date")
     private String endDate;
-
-    @Column(name = "created_by")
     private Long createdById;
 
-    public Project(){
 
-    }
-
-    public Project(ProjectModel projectModel){
-        this.id = projectModel.getId();
-        this.projectName = projectModel.getProjectName();
-        this.startDate = projectModel.getStartDate();
-        this.endDate = projectModel.getEndDate();
-        this.createdById = projectModel.getCreatedById();
-
+    public ProjectModel(Project project){
+        this.id = project.getId();
+        this.projectName = project.getProjectName();
+        this.startDate = project.getStartDate();
+        this.endDate = project.getEndDate();
+        this.createdById = project.getCreatedById();
     }
 
 

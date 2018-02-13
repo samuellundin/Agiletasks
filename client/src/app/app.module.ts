@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationGuard} from "./security/authentication.guard";
 import {UserService} from "./service/user.service";
 import {ProjectService} from "./service/project.service";
+import { NewProjectComponent } from './project/new-project/new-project.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {ProjectService} from "./service/project.service";
     LoginComponent,
     RegistrationComponent,
     ProjectComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,
