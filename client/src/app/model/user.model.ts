@@ -1,10 +1,10 @@
 export class User{
 
-  private id: number;
-  private email: string;
-  private password: string;
-  private firstName: string;
-  private lastName: string;
-  private image: string;
+  id: number;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  image: string;
 
 }
