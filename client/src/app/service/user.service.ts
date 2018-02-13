@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
+import {User} from "../model/user.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 
-
+  registerUser(user: User) {
+    return this.http.post("http://localhost:4200/api/user/register", user);
+  }
 }

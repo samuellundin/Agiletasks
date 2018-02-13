@@ -21,7 +21,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerNewUser(){
-    console.log(this.user);
+    this.userService.registerUser(this.user).subscribe(res =>{
+      console.log()
+    })
   }
 
 }
