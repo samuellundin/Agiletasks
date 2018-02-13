@@ -11,14 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
-import static com.agiletasks.security.JWTAuthenticationFilter.*;
+import static com.agiletasks.Application.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
-        super(authenticationManager);
+    public JWTAuthorizationFilter(AuthenticationManager authManager) {
+        super(authManager);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null);
+                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
             return null;
         }

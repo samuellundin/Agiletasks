@@ -4,10 +4,8 @@ import com.agiletasks.entity.User;
 import com.agiletasks.model.UserModel;
 import com.agiletasks.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +13,14 @@ import java.util.List;
 @Service
 public class UserService {
 
+    private final UsersRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
-    private UsersRepository userRepository;
+    public UserService(UsersRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public List<UserModel> getAllUsers() {
         List<User> users = userRepository.findAll();
@@ -28,7 +32,8 @@ public class UserService {
     }
 
     public UserModel registerUser(UserModel userModel) {
-     User user = userRepository.save(new User(userModel));
-     return new UserModel(user);
+        userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
+        User user = userRepository.save(new User(userModel));
+        return new UserModel(user);
     }
 }
