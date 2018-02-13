@@ -30,8 +30,17 @@
       <label for="password">Password: </label>
       <input class="form-control" id="password" type="password" name="password" [(ngModel)]="user.password"
              #password="ngModel" minlength="4" required pattern="[a-zA-Z0-9-]+">
-      <div *ngIf="email.password && (email.password || email.password)" class="alert alert-danger">
+      <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
         <div>Password must be at least 4 characters</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confrim password: </label>
+      <input class="form-control" id="confirmPassword" type="password" name="confirmPassword"
+             [(ngModel)]="user.confirmPassword"
+             #confirmPassword="ngModel"  required/>
+      <div *ngIf="!confirmPasswords() && (confirmPassword.dirty || confirmPassword.touched) "class="alert alert-danger">
+        <div>Passwords do not match</div>
       </div>
     </div>
     <div class="form-group">
@@ -39,7 +48,7 @@
       <input class="form-control" id="image" type="text" name="image" [(ngModel)]="user.image">
     </div>
     <div class="form-group">
-      <button class="btn btn-success" [disabled]="!f.valid">Register</button>
+      <button class="btn btn-success"  [disabled]="!f.valid || !confirmPasswords()">Register</button>
     </div>
   </form>
 </div>

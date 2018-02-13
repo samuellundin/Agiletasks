@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user.model";
+import {convertRuleOptions} from "tslint/lib/configuration";
 
 
 @Component({
@@ -10,7 +11,10 @@ import {User} from "../../model/user.model";
 })
 export class RegistrationComponent implements OnInit {
 
-  user: User;
+  user: any = {};
+
+
+  confirmPassword: string = "";
 
   constructor(private userService: UserService ) {
     this.user = new User;
@@ -22,8 +26,13 @@ export class RegistrationComponent implements OnInit {
 
   registerNewUser(){
     this.userService.registerUser(this.user).subscribe(res =>{
-      console.log()
+      console.log(res);
     })
+  }
+
+  confirmPasswords(){
+    return this.user.password == this.user.confirmPassword;
+
   }
 
 }

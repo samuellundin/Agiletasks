@@ -18,6 +18,7 @@ import {UserService} from "./service/user.service";
 import {ProjectService} from "./service/project.service";
 import {AuthenticationService} from "./service/authentication.service";
 import {AuthenticationInterceptor} from "./security/authentication.interceptor";
+import { NewProjectComponent } from './project/new-project/new-project.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {AuthenticationInterceptor} from "./security/authentication.interceptor";
     LoginComponent,
     RegistrationComponent,
     ProjectComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,
