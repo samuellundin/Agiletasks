@@ -8,10 +8,10 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="currentUser" class="nav-item">
         <a class="nav-link" routerLink="/project" routerLinkActive="active">Projects</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="currentUser" class="nav-item">
         <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
       </li>
     </ul>
