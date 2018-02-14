@@ -19,6 +19,7 @@ import {ProjectService} from "./service/project.service";
 import {AuthenticationService} from "./service/authentication.service";
 import {AuthenticationInterceptor} from "./security/authentication.interceptor";
 import { NewProjectComponent } from './project/new-project/new-project.component';
+import { UserFilterPipe } from './pipe/user-filter.pipe';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { NewProjectComponent } from './project/new-project/new-project.component
     RegistrationComponent,
     ProjectComponent,
     ProfileComponent,
-    NewProjectComponent
+    NewProjectComponent,
+    UserFilterPipe
   ],
   imports: [
     BrowserModule,

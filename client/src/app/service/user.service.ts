@@ -20,4 +20,9 @@ export class UserService {
   getUserByEmail(email: string) {
     return this.http.get(USER.url + '/' + email + '/');
   }
+
+  getAllUsers() {
+    return this.http.get(USER.url);
+  }
+
 }
