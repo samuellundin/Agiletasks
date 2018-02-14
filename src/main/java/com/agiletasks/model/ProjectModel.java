@@ -2,6 +2,7 @@ package com.agiletasks.model;
 
 import com.agiletasks.entity.Project;
 import com.agiletasks.entity.Sprint;
+import com.agiletasks.entity.User;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class ProjectModel {
     private String endDate;
     private Long createdById;
     private List<Sprint> sprintList;
+    private List<User> userList;
 
     public ProjectModel() {}
 
@@ -62,5 +64,23 @@ public class ProjectModel {
 
     public void setCreatedById(Long createdById) {
         this.createdById = createdById;
+    }
+
+    public List<Sprint> getSprintList() {
+        return sprintList;
+
+
+    }
+
+    public void setSprintList(List<Sprint> sprintList) {
+        this.sprintList = sprintList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

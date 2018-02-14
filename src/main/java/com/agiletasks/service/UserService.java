@@ -26,7 +26,9 @@ public class UserService {
         List<User> users = userRepository.findAll();
         List<UserModel> userModels = new ArrayList<>();
         for(User user: users) {
-            userModels.add(new UserModel(user));
+            UserModel model = new UserModel(user);
+            model.setPassword("");
+            userModels.add(model);
         }
         return userModels;
     }

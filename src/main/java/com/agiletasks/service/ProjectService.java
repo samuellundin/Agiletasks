@@ -29,4 +29,9 @@ public class ProjectService {
         }
         return projectModels;
     }
+
+    public ProjectModel createProject(ProjectModel projectModel) {
+            Project project = projectRepository.save(new Project(projectModel));
+            return new ProjectModel(project);
+    }
 }

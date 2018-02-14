@@ -19,6 +19,11 @@ import {ProjectService} from "./service/project.service";
 import {AuthenticationService} from "./service/authentication.service";
 import {AuthenticationInterceptor} from "./security/authentication.interceptor";
 import { NewProjectComponent } from './project/new-project/new-project.component';
+import {MyDatePickerModule} from '../../node_modules/angular4-datepicker/src/my-date-picker'
+import {ToasterModule} from "ngx-toaster/src/lib";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+
 
 
 @NgModule({
@@ -37,8 +42,12 @@ import { NewProjectComponent } from './project/new-project/new-project.component
   imports: [
     BrowserModule,
     FormsModule,
+    MyDatePickerModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ToasterModule,
+    BrowserAnimationsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -47,4 +56,6 @@ import { NewProjectComponent } from './project/new-project/new-project.component
   }, AuthenticationGuard, UserService, ProjectService, AuthenticationService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

@@ -1,8 +1,14 @@
-export class Project{
+import {Sprint} from "./sprint.model";
+import {User} from "./user.model";
 
-   id: number;
-   name: string;
-   startDate: string;
-   endDate: string;
+export class Project {
+
+  id: number;
+  projectName: string;
+  startDate: string;
+  endDate: string;
+  createdById: number;
+  sprintList: Sprint[];
+  userList: User[];
 
 }
