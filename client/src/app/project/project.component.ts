@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/user.model";
 import {UserService} from "../service/user.service";
+import {AuthenticationService} from "../service/authentication.service";
+import {ProjectService} from "../service/project.service";
+import {Project} from "../model/project.model";
 
 @Component({
   selector: 'app-project',
@@ -12,15 +15,26 @@ export class ProjectComponent implements OnInit {
   model: any = {};
   userList: User[] = [];
   selectedUserList: User[] = [];
+  projectList: Project[] = [];
+  currentUser: any;
+  selectedProject: Project;
 
-  constructor(private userService: UserService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private userService: UserService,
+              private projectService: ProjectService) {}
 
   ngOnInit() {
+    this.authenticationService.getCurrentUser().subscribe(user => {
+      this.currentUser = user;
+    });
     this.userService.getAllUsers().subscribe((users: User[]) => {
       this.userList = users;
-      console.log(this.userList)
-    }, error => {
-
+    });
+    this.projectService.getProjectsByUserId(this.currentUser.id).subscribe((projects: Project[]) => {
+      this.projectList = projects;
+      if(this.projectList) {
+        this.selectedProject = this.projectList[0];
+      }
     });
   }
 
@@ -41,4 +55,10 @@ export class ProjectComponent implements OnInit {
     this.userList.push(user);
     this.model.selectedUsers = null;
   }
+
+  handleProjectChange() {
+    console.log(this.selectedProject);
+  }
+
+
 }
