@@ -1,6 +1,9 @@
 package com.agiletasks.model;
 
 import com.agiletasks.entity.Project;
+import com.agiletasks.entity.Sprint;
+
+import java.util.List;
 
 public class ProjectModel {
 
@@ -9,17 +12,17 @@ public class ProjectModel {
     private String startDate;
     private String endDate;
     private Long createdById;
+    private List<Sprint> sprintList;
 
+    public ProjectModel() {}
 
-    public ProjectModel(Project project){
+    public ProjectModel(Project project) {
         this.id = project.getId();
         this.projectName = project.getProjectName();
         this.startDate = project.getStartDate();
         this.endDate = project.getEndDate();
         this.createdById = project.getCreatedById();
     }
-
-
 
     public Long getId() {
         return id;

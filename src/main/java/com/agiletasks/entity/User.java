@@ -4,6 +4,7 @@ import com.agiletasks.model.UserModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +29,15 @@ public class User implements Serializable {
 
     @Column(name = "image")
     private String image;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "project_user",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "project_id") })
+    private List<Project> projectList;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="user")
+    private List<Task> taskList;
 
     public User(UserModel userModel) {
         this.email = userModel.getEmail();
@@ -87,4 +97,19 @@ public class User implements Serializable {
         this.image = image;
     }
 
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
 }

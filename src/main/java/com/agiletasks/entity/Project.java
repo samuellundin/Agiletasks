@@ -1,7 +1,10 @@
 package com.agiletasks.entity;
 
 import com.agiletasks.model.ProjectModel;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -25,9 +28,13 @@ public class Project {
     @Column(name = "created_by")
     private Long createdById;
 
-    public Project(){
+    @OneToMany(mappedBy = "id")
+    private List<Sprint> sprintList = new ArrayList<>();
 
-    }
+    @ManyToMany(mappedBy = "projectList")
+    private List<User> userList = new ArrayList<>();
+
+    public Project() {}
 
     public Project(ProjectModel projectModel){
         this.id = projectModel.getId();
@@ -37,8 +44,6 @@ public class Project {
         this.createdById = projectModel.getCreatedById();
 
     }
-
-
 
     public Long getId() {
         return id;
@@ -78,5 +83,21 @@ public class Project {
 
     public void setCreatedById(Long createdById) {
         this.createdById = createdById;
+    }
+
+    public List<Sprint> getSprintList() {
+        return sprintList;
+    }
+
+    public void setSprintList(List<Sprint> sprintList) {
+        this.sprintList = sprintList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

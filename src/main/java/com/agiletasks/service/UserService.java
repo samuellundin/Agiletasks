@@ -38,6 +38,8 @@ public class UserService {
     }
 
     public UserModel getUserByEmail(String email) {
-        return new UserModel(userRepository.findByEmail(email));
+        UserModel userModel = new UserModel(userRepository.findByEmail(email));
+        userModel.setPassword("");
+        return userModel;
     }
 }
