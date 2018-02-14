@@ -11,11 +11,9 @@ public class UserModel {
     private String password;
     private String image;
 
-    public UserModel(){
+    public UserModel() {}
 
-    }
-
-    public UserModel(User user){
+    public UserModel(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
         this.firstName = user.getFirstName();
