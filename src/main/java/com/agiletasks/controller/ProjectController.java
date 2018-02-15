@@ -29,9 +29,16 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.getAllProjects(), HttpStatus.OK);
     }
 
+
     @PostMapping("/new")
     public ResponseEntity<ProjectModel> createProject(@RequestBody ProjectModel projectModel){
         return new ResponseEntity<>(projectService.createProject(projectModel), HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<List<ProjectModel>> getProjectsByUserId(@PathVariable("id") Long userId) {
+        return new ResponseEntity<>(projectService.getProjectsByUserId(userId), HttpStatus.OK);
     }
 
 

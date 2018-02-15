@@ -8,6 +8,12 @@ export class ProjectService {
 
   constructor(private http : HttpClient) { }
 
+
+  getProjectsByUserId(id: number) {
+    return this.http.get(PROJECT.url + '/' + id);
+  }
+
+
   createProject(project: Project) {
     console.log(project);
     return this.http.post(PROJECT.url + '/new', project);

@@ -1,15 +1,15 @@
-const BASE_URL_LOGIN = '/login';
-const BASE_URL_USER = '/api/users';
-const BASE_URL_PROJECT = '/api/projects'
+const URL_LOGIN = '/login';
+const URL_USER = '/api/users';
+const URL_PROJECT = '/api/projects';
 
 export const LOGIN = {
-  url: BASE_URL_LOGIN
+  url: URL_LOGIN
 };
 
 export const USER = {
-  url: BASE_URL_USER
+  url: URL_USER
 };
 
-export const PROJECT ={
-  url: BASE_URL_PROJECT
+export const PROJECT = {
+  url: URL_PROJECT
 };

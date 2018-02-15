@@ -22,7 +22,7 @@ import { NewProjectComponent } from './project/new-project/new-project.component
 import {MyDatePickerModule} from '../../node_modules/angular4-datepicker/src/my-date-picker'
 import {ToasterModule} from "ngx-toaster/src/lib";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
+import { UserFilterPipe } from './pipe/user-filter.pipe';
 
 
 
@@ -37,7 +37,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RegistrationComponent,
     ProjectComponent,
     ProfileComponent,
-    NewProjectComponent
+    NewProjectComponent,
+    UserFilterPipe
   ],
   imports: [
     BrowserModule,
