@@ -1,25 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/dashboard"><img src="../../../assets/navbarouttakewhite.png" height="50" width="175"></a>
+<nav class="navbar navbar-expand-lg navbar-border">
+  <a class="navbar-brand" routerLink="/dashboard"><img src="../../../assets/navbar2blacktext.png" height="50" width="175"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li *ngIf="currentUser" class="nav-item">
-        <a class="nav-link" routerLink="/project" routerLinkActive="active">Projects</a>
+      <li *ngIf="currentUser" class="nav-item nav-item-fix">
+        <a class="nav-link navbar-link-fix not-active" routerLink="/project" routerLinkActive="active">Projects</a>
       </li>
-      <li *ngIf="currentUser" class="nav-item">
-        <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
+      <li *ngIf="currentUser" class="nav-item nav-item-fix">
+        <a class="nav-link navbar-link-fix not-active" routerLink="/profile" routerLinkActive="active">Profile</a>
       </li>
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
-      <li *ngIf="!currentUser" class="nav-item">
-        <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">
+      <li *ngIf="!currentUser" class="nav-item nav-button-li-fix">
+        <a class="nav-button-fix btn btn-outline-primary" routerLink="/auth/login">
           Login <i class="fa fa-sign-in"></i>
         </a>
       </li>
-      <li *ngIf="currentUser" class="nav-item">
-        <a class="nav-link" (click)="logout()">
+      <li *ngIf="currentUser" class="nav-item nav-button-li-fix">
+        <a class="nav-button-fix btn btn-outline-primary" (click)="logout()">
           Logout <i class="fa fa-sign-out"></i>
         </a>
       </li>

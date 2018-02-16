@@ -15,7 +15,7 @@ public class Application extends SpringBootServletInitializer {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
     public static final String SECRET = "SecretKeyToGenJWTs";
-    public static final String REGISTER_URL = "/api/user/register";
+    public static final String REGISTER_URL = "/api/users/register";
     public static final String LOGIN_URL = "/login";
 
     public static void main(String[] args) {

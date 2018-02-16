@@ -10,7 +10,7 @@ export class UserService {
 
 
   registerUser(user: User) {
-    return this.http.post("http://localhost:4200/api/user/register", user);
+    return this.http.post(USER.url +"/register", user);
   }
 
   login() {
