@@ -1,6 +1,7 @@
 footer {
-  background-color: #343a40;
+  background-color: #ffffff;
   height: 50px;
+  border-top: rgba(0, 0, 0, 0.15) 1px solid;
 }
 .text-center {
   line-height: 3;
