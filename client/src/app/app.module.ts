@@ -12,7 +12,7 @@ import { LoginComponent } from './authenication/login/login.component';
 import { RegistrationComponent } from './authenication/registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './user-profile/profile/profile.component';
 import {AuthenticationGuard} from "./security/authentication.guard";
 import {UserService} from "./service/user.service";
 import {ProjectService} from "./service/project.service";
@@ -23,6 +23,7 @@ import {MyDatePickerModule} from '../../node_modules/angular4-datepicker/src/my-
 import {ToasterModule} from "ngx-toaster/src/lib";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UserFilterPipe } from './pipe/user-filter.pipe';
+import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.component';
 
 
 
@@ -38,7 +39,8 @@ import { UserFilterPipe } from './pipe/user-filter.pipe';
     ProjectComponent,
     ProfileComponent,
     NewProjectComponent,
-    UserFilterPipe
+    UserFilterPipe,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

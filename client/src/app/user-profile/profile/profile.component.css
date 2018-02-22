@@ -1,0 +1,22 @@
+.bold-text{
+  font-weight: bold;
+}
+
+.edit-button{
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+
+}
+
+.edit-button:hover{
+  cursor: pointer;
+}
+
+.edit-button:active{
+
+  color: red;
+
+}
+
+
