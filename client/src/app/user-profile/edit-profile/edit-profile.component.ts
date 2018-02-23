@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../model/user.model";
+import {AuthenticationService} from "../../service/authentication.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor() { }
+  user: any = {};
+  currentUser: User;
+
+
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authenticationService.getCurrentUser().subscribe(user => {
+      this.currentUser = user;
+    })
   }
 
 }
