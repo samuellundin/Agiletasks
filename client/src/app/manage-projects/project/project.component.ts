@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../model/user.model";
-import {UserService} from "../service/user.service";
-import {AuthenticationService} from "../service/authentication.service";
-import {ProjectService} from "../service/project.service";
-import {Project} from "../model/project.model";
+import {User} from "../../model/user.model";
+import {UserService} from "../../service/user.service";
+import {AuthenticationService} from "../../service/authentication.service";
+import {ProjectService} from "../../service/project.service";
+import {Project} from "../../model/project.model";
 
 @Component({
   selector: 'app-project',

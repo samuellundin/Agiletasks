@@ -11,19 +11,21 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './authenication/login/login.component';
 import { RegistrationComponent } from './authenication/registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProjectComponent } from './project/project.component';
+import { ProjectComponent } from './manage-projects/project/project.component';
 import { ProfileComponent } from './user-profile/profile/profile.component';
 import {AuthenticationGuard} from "./security/authentication.guard";
 import {UserService} from "./service/user.service";
 import {ProjectService} from "./service/project.service";
 import {AuthenticationService} from "./service/authentication.service";
 import {AuthenticationInterceptor} from "./security/authentication.interceptor";
-import { NewProjectComponent } from './project/new-project/new-project.component';
+import { NewProjectComponent } from './projects/new-project/new-project.component';
 import {MyDatePickerModule} from '../../node_modules/angular4-datepicker/src/my-date-picker'
 import {ToasterModule} from "ngx-toaster/src/lib";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UserFilterPipe } from './pipe/user-filter.pipe';
 import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.component';
+import { ManageProjectsComponent } from './manage-projects/manage-projects.component';
+import {MatTabsModule} from "@angular/material";
 
 
 
@@ -40,7 +42,8 @@ import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.c
     ProfileComponent,
     NewProjectComponent,
     UserFilterPipe,
-    EditProfileComponent
+    EditProfileComponent,
+    ManageProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.c
     AppRoutingModule,
     HttpClientModule,
     ToasterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule
+
 
   ],
   providers: [{

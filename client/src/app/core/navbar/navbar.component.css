@@ -1,3 +1,12 @@
+
+img {
+  transition: all .2s ease-in-out;
+}
+img:hover {
+  transform: scale(0.9);
+}
+
+
 .nav-button-fix{
   color: black !important;
   font-weight: 400;
@@ -8,6 +17,12 @@
 
 .nav-button-li-fix{
   margin-right: 10px !important;
+}
+
+.nav-button-logout-fix{
+  margin-right: 10px !important;
+  margin-top: 10px !important;
+
 }
 
 .btn-outline-primary:hover {
