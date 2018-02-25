@@ -17,8 +17,13 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.getCurrentUser().subscribe(user => {
-      this.currentUser = user;
+      this.user = user;
     })
+  }
+
+  confirmPasswords(){
+    return this.user.password == this.user.confirmPassword;
+
   }
 
 }
