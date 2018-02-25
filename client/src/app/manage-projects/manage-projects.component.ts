@@ -19,6 +19,7 @@ export class ManageProjectsComponent implements OnInit {
   currentUser: User;
   id: number;
 
+
   constructor(private authenticationService: AuthenticationService,
               private userService: UserService,
               private projectService: ProjectService,
@@ -26,6 +27,8 @@ export class ManageProjectsComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+
+
     this.authenticationService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
     });
@@ -35,12 +38,19 @@ export class ManageProjectsComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     });
+    this.selectedProject = new Project;
+
+
   }
 
   getSelectedIdFromProject() {
     this.id = this.selectedProject.id;
    this.router.navigate([this.id], {relativeTo: this.route});
    }
+
+  isEmptyObject(obj) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
 
 
 
