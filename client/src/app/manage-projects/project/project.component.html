@@ -4,13 +4,14 @@
 </div>
 
 <div class="form-group">
-  <label for="exampleFormControlSelect2">Example multiple select</label>
+  <label for="exampleFormControlSelect2">{{title}}</label>
   <select multiple class="form-control" id="exampleFormControlSelect2" [(ngModel)]="model.selectedUsers">
     <option *ngFor="let user of userList | userFilter:model.searchUser" [ngValue]="user">{{user.firstName}}
       {{user.lastName}}
     </option>
   </select>
 </div>
+<label>Search for users:</label>
 <input type="text" class="form-control" [(ngModel)]="model.searchUser" name="searchUser" #searchUser="ngModel">
 <button type="button" class="btn btn-success" [disabled]="!model.selectedUsers" (click)="addUsers()">Add</button>
 <ul class="list-group">
@@ -21,3 +22,5 @@
     </span>
   </li>
 </ul>
+
+

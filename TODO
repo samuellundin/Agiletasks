@@ -37,3 +37,7 @@ Fixa visuals för hur projcts ska se ut.
 Stylea framsidan så att den ser lite roligare ut.
 Fixa så att det finns en defualt bild om man inte har lagt till en profilbild.
 Fixa så att man kan lägga till bilder på profil istället för imgUrl.
+
+
+//TODO buggfix
+När man loggar in direkt så uppdaterars inte navbaren.

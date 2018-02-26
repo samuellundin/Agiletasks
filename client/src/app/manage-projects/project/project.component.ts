@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../model/user.model";
 import {UserService} from "../../service/user.service";
 import {AuthenticationService} from "../../service/authentication.service";
@@ -10,32 +10,52 @@ import {Project} from "../../model/project.model";
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
 
+
+  ngOnDestroy(){
+    this.saveUsers();
+  }
+
+  title: string;
+  currentProject: Project;
   model: any = {};
   userList: User[] = [];
   selectedUserList: User[] = [];
-  projectList: Project[] = [];
-  currentUser: any;
-  selectedProject: Project;
 
-  constructor(private authenticationService: AuthenticationService,
-              private userService: UserService,
+
+  constructor(private userService: UserService,
               private projectService: ProjectService) {}
 
   ngOnInit() {
-    this.authenticationService.getCurrentUser().subscribe(user => {
-      this.currentUser = user;
-    });
+    this.title = "Loading Users...";
+    this.currentProject = this.projectService.getCurrentProject();
+
+    if (this.currentProject.userList != null){
+      this.selectedUserList = this.currentProject.userList;
+    }
     this.userService.getAllUsers().subscribe((users: User[]) => {
       this.userList = users;
+      this.filterUserlist();
+    },()=>{
+
+    },()=>{
+      this.title = "All Users:"
     });
-    this.projectService.getProjectsByUserId(this.currentUser.id).subscribe((projects: Project[]) => {
-      this.projectList = projects;
-      if(this.projectList) {
-        this.selectedProject = this.projectList[0];
+  }
+
+  filterUserlist(){
+    for (let user of this.selectedUserList) {
+      console.log("or");
+      for (let filterIndex of this.userList) {
+        console.log("do i? ");
+        if (user.id == filterIndex.id) {
+          let index = this.userList.indexOf(filterIndex);
+          this.userList.splice(index, 1);
+        }
       }
-    });
+    }
+
   }
 
   addUsers() {
@@ -44,9 +64,12 @@ export class ProjectComponent implements OnInit {
         let index = this.userList.indexOf(user);
         this.userList.splice(index, 1);
         this.selectedUserList.push(user);
+
+
       }
       this.model.selectedUsers = null;
     }
+
   }
 
   removeUser(user: User) {
@@ -56,9 +79,10 @@ export class ProjectComponent implements OnInit {
     this.model.selectedUsers = null;
   }
 
-  handleProjectChange() {
-    console.log(this.selectedProject);
-  }
+  saveUsers(){
+    this.currentProject.userList = this.selectedUserList;
+    console.log(this.currentProject);
 
+  }
 
 }

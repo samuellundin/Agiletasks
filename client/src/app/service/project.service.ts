@@ -6,6 +6,8 @@ import {PROJECT} from "./api.url";
 @Injectable()
 export class ProjectService {
 
+  currentProject: Project;
+
   constructor(private http : HttpClient) { }
 
 
@@ -15,7 +17,16 @@ export class ProjectService {
 
 
   createProject(project: Project) {
-    console.log(project);
+
     return this.http.post(PROJECT.url + '/new', project);
   }
+
+  getCurrentProject(){
+    return this.currentProject;
+  }
+  setCurrentProject(project: Project){
+    this.currentProject = project;
+  }
+
+
 }
