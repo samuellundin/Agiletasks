@@ -27,12 +27,11 @@ assignedto
 
 
 ////TODO
-Toaster finns på Skapande av projekt, fixa på alla alternativ lägga till en snackbar eller annan toaster.
+Toaster finns på Skapande av projekt, fixa på alla. alternativ lägga till en snackbar eller annan toaster.
 Fixa så att man kan lägga till person till project via manage project.
 Fixa så att man kan updatera vilka personer som jobbar på ett project.
 Fixa så att man kan uppdatera settings via manage project.
 Fixa visuals för sprints i manage project.
-Fixa så att man kan uppdatera profilen via edit profile.
 Fixa visuals för hur projcts ska se ut.
 Stylea framsidan så att den ser lite roligare ut.
 Fixa så att det finns en defualt bild om man inte har lagt till en profilbild.

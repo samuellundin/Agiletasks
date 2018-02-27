@@ -37,4 +37,17 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
     }
 
+    @PutMapping("/edit_user")
+    public ResponseEntity<UserModel> updateUser(@RequestBody UserModel userModel){
+        UserModel updatedUser = userService.updateUser(userModel);
+        updatedUser.setPassword("");
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<UserModel> changePassword(@RequestBody UserModel userModel){
+        UserModel updatedUser = userService.changePassword(userModel);
+        updatedUser.setPassword("");
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }

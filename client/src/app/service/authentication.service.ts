@@ -40,7 +40,7 @@ export class AuthenticationService {
     this.authenticatedUser = new BehaviorSubject<any>(null);
     localStorage.removeItem(JWT_TOKEN);
     localStorage.removeItem(CURRENT_USER);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 
   getCurrentUser() {

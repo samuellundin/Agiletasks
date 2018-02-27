@@ -13,9 +13,10 @@ export class UserService {
     return this.http.post(USER.url +"/register", user);
   }
 
-  login() {
-
+  updateUser(user: User){
+    return this.http.put(USER.url + "/edit_user", user);
   }
+
 
   getUserByEmail(email: string) {
     return this.http.get(USER.url + '/' + email + '/');
@@ -25,4 +26,8 @@ export class UserService {
     return this.http.get(USER.url);
   }
 
+  updateUserPassword(user: User) {
+    return this.http.put(USER.url + "/changePassword", user);
+
+  }
 }

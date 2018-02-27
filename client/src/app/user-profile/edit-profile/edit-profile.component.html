@@ -2,7 +2,7 @@
   <h1 class="text-center">Edit profile</h1>
   <hr>
   <h3 class="text-center">User details</h3>
-  <form (ngSubmit)="uf.valid && updateUserDetails()" #f="ngForm" novalidate>
+  <form (ngSubmit)="f.valid && updateUserDetails()" #f="ngForm" novalidate>
     <div class="form-group">
       <label for="firstName">First name: </label>
       <input class="form-control" id="firstName" type="text" name="firstName" [(ngModel)]="user.firstName"
@@ -39,7 +39,7 @@
   </form>
   <hr>
   <h3 class="text-center">Change password</h3>
-  <form (ngSubmit)="pf.valid && updateUserPassword()" #pf="ngForm" novalidate>
+ <form (ngSubmit)="pf.valid && updateUserPassword()" #pf="ngForm" novalidate>
     <div class="form-group">
       <label for="password">New password: </label>
       <input class="form-control" id="password" type="password" name="password" [(ngModel)]="user.password"

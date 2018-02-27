@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../model/user.model";
 import {AuthenticationService} from "../../service/authentication.service";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,10 +11,11 @@ import {AuthenticationService} from "../../service/authentication.service";
 export class EditProfileComponent implements OnInit {
 
   user: any = {};
-  currentUser: User;
 
 
-  constructor(private authenticationService: AuthenticationService) { }
+
+  constructor(private authenticationService: AuthenticationService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.authenticationService.getCurrentUser().subscribe(user => {
@@ -26,4 +28,15 @@ export class EditProfileComponent implements OnInit {
 
   }
 
+  updateUserDetails() {
+    this.userService.updateUser(this.user).subscribe( res =>{
+      console.log(res);
+    });
+  }
+
+  updateUserPassword(){
+    this.userService.updateUserPassword(this.user).subscribe(res =>{
+      console.log(res);
+    })
+  }
 }

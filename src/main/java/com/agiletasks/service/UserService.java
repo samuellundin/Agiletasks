@@ -44,4 +44,21 @@ public class UserService {
         userModel.setPassword("");
         return userModel;
     }
+
+    public UserModel updateUser(UserModel userModel){
+        User oldUser = userRepository.findOne(userModel.getId());
+        oldUser.setEmail(userModel.getEmail());
+        oldUser.setFirstName(userModel.getFirstName());
+        oldUser.setLastName(userModel.getLastName());
+        oldUser.setImage(userModel.getImage());
+        userRepository.save(oldUser);
+        return new UserModel(oldUser);
+    }
+
+    public UserModel changePassword(UserModel userModel) {
+        User oldUser = userRepository.findOne(userModel.getId());
+        oldUser.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
+        userRepository.save(oldUser);
+        return new UserModel(oldUser);
+    }
 }
