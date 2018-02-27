@@ -29,4 +29,7 @@ export class ProjectService {
   }
 
 
+  saveCurrentUserListToProject(project: Project) {
+    return this.http.put(PROJECT.url + '/save_userlist', project);
+  }
 }

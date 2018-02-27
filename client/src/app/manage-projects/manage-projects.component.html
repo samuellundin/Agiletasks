@@ -1,14 +1,17 @@
 <div class="row">
-  <label class="col-lg-4">Select a project:</label>
+  <label class="">Select a project:</label>
 </div>
-<div class="row justify-content-between pl-3 pr-3">
-
-  <select class="form-control col-4" [(ngModel)]="selectedProject" (change)="getSelectedIdFromProject()">
+<div class="row">
+  <div class="col-lg-4">
+  <select class="form-control" [(ngModel)]="selectedProject" (change)="getSelectedIdFromProject()">
     <option *ngFor="let project of projectList" [ngValue]="project">{{project.projectName}}</option>
   </select>
-  <button type="button" class="btn btn-success align-items-center" routerLink='/newproject' routerLinkActive="active">
-    New project <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-  </button>
+  </div>
+  <div class="col-lg-8">
+    <button type="button" class="btn btn-outline-dark pull-right" routerLink='/newproject' routerLinkActive="active">New project <i
+      class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+  </div>
+
 </div>
 <hr>
 <h2 class="text-center">{{selectedProject.projectName}}</h2>

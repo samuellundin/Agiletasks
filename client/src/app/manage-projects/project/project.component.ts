@@ -46,9 +46,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   filterUserlist(){
     for (let user of this.selectedUserList) {
-      console.log("or");
       for (let filterIndex of this.userList) {
-        console.log("do i? ");
         if (user.id == filterIndex.id) {
           let index = this.userList.indexOf(filterIndex);
           this.userList.splice(index, 1);
@@ -81,7 +79,10 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   saveUsers(){
     this.currentProject.userList = this.selectedUserList;
-    console.log(this.currentProject);
+    this.projectService.saveCurrentUserListToProject(this.currentProject).subscribe(res =>{
+      console.log(res);
+    })
+
 
   }
 

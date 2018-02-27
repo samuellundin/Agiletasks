@@ -54,8 +54,4 @@ export class ManageProjectsComponent implements OnInit {
   }
 
 
-
-
-
-
 }

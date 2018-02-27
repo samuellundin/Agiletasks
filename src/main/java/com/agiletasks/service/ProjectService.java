@@ -4,6 +4,7 @@ import com.agiletasks.entity.Project;
 import com.agiletasks.model.ProjectModel;
 import com.agiletasks.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,5 +43,12 @@ public class ProjectService {
     public ProjectModel createProject(ProjectModel projectModel) {
             Project project = projectRepository.save(new Project(projectModel));
             return new ProjectModel(project);
+    }
+
+    public ProjectModel saveUserListToProject(ProjectModel projectModel) {
+        Project oldProject = projectRepository.findOne(projectModel.getId());
+        oldProject.setUserList(projectModel.getUserList());
+        Project newProject = projectRepository.save(oldProject);
+        return new ProjectModel(newProject);
     }
 }

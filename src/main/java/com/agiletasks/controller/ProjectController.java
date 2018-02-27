@@ -41,5 +41,9 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.getProjectsByUserId(userId), HttpStatus.OK);
     }
 
+    @PutMapping("/save_userlist")
+    public ResponseEntity<ProjectModel> saveUserListToProject(@RequestBody ProjectModel projectModel) {
+        return new ResponseEntity<>(projectService.saveUserListToProject(projectModel), HttpStatus.OK);
 
+    }
 }
