@@ -1,9 +1,9 @@
 package com.agiletasks.model;
 
 import com.agiletasks.entity.Project;
-import com.agiletasks.entity.Sprint;
 import com.agiletasks.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectModel {
@@ -13,10 +13,11 @@ public class ProjectModel {
     private String startDate;
     private String endDate;
     private Long createdById;
-    private List<Sprint> sprintList;
+    private List<SprintModel> sprintList;
     private List<User> userList;
 
-    public ProjectModel() {}
+    public ProjectModel() {
+    }
 
     public ProjectModel(Project project) {
         this.id = project.getId();
@@ -24,6 +25,7 @@ public class ProjectModel {
         this.startDate = project.getStartDate();
         this.endDate = project.getEndDate();
         this.createdById = project.getCreatedById();
+        this.buildSprintList(project);
     }
 
     public Long getId() {
@@ -66,15 +68,6 @@ public class ProjectModel {
         this.createdById = createdById;
     }
 
-    public List<Sprint> getSprintList() {
-        return sprintList;
-
-
-    }
-
-    public void setSprintList(List<Sprint> sprintList) {
-        this.sprintList = sprintList;
-    }
 
     public List<User> getUserList() {
         return userList;
@@ -83,4 +76,21 @@ public class ProjectModel {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
+
+    private void buildSprintList(Project project) {
+        if (project.getSprintList() == null) {
+            return;
+        }
+        this.sprintList = new ArrayList<>();
+        project.getSprintList().forEach(sprint -> this.sprintList.add(new SprintModel(sprint)));
+    }
+
+    public List<SprintModel> getSprintList() {
+        return sprintList;
+    }
+
+    public void setSprintList(List<SprintModel> sprintList) {
+        this.sprintList = sprintList;
+    }
+
 }

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">New Sprint</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="inputSprintTitle">Title:</label>
+      <input type="text" class="form-control" id="inputSprintTitle" [(ngModel)]="title" name="title" placeholder="Enter title">
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label>Start date:</label>
+        <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="startDate" placeholder="DD/MM/YYYY" required></my-date-picker>
+      </div>
+      <div class="form-group col">
+        <label>End date:</label>
+        <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="endDate" placeholder="DD/MM/YYYY" required></my-date-picker>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">Cancel</button>
+  <button type="button" class="btn btn-success" (click)="handleCreateSprint()">Create</button>
+</div>

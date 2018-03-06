@@ -28,7 +28,7 @@ public class Project {
     @Column(name = "created_by")
     private Long createdById;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "project")
     private List<Sprint> sprintList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "projectList")

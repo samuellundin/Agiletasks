@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
@@ -28,9 +28,7 @@ import { ManageProjectsComponent } from './manage-projects/manage-projects.compo
 import { ManageNavbarComponent } from './manage-projects/manage-navbar/manage-navbar.component';
 import { ManageSprintsComponent } from './manage-projects/manage-navbar/manage-sprints/manage-sprints.component';
 import { ProjectOverviewComponent } from './projects/project-overview/project-overview.component';
-
-
-
+import { NewSprintModal } from './sprint/new-sprint/new-sprint.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +47,8 @@ import { ProjectOverviewComponent } from './projects/project-overview/project-ov
     ManageProjectsComponent,
     ManageNavbarComponent,
     ManageSprintsComponent,
-    ProjectOverviewComponent
+    ProjectOverviewComponent,
+    NewSprintModal
   ],
   imports: [
     BrowserModule,
@@ -58,16 +57,16 @@ import { ProjectOverviewComponent } from './projects/project-overview/project-ov
     AppRoutingModule,
     HttpClientModule,
     ToasterModule,
-    BrowserAnimationsModule
-
-
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
     multi: true
   }, AuthenticationGuard, UserService, ProjectService, AuthenticationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NewSprintModal]
 })
 export class AppModule {
 

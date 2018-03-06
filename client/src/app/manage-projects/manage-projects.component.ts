@@ -5,7 +5,6 @@ import {ProjectService} from "../service/project.service";
 import {UserService} from "../service/user.service";
 import {AuthenticationService} from "../service/authentication.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {relativeToRootDirs} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-manage-projects',
@@ -18,7 +17,6 @@ export class ManageProjectsComponent implements OnInit {
   projectList: Project[] = [];
   currentUser: User;
   id: number;
-
 
   constructor(private authenticationService: AuthenticationService,
               private userService: UserService,

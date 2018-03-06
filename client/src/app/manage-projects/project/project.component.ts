@@ -12,17 +12,15 @@ import {Project} from "../../model/project.model";
 })
 export class ProjectComponent implements OnInit, OnDestroy {
 
-
-  ngOnDestroy(){
-    this.saveUsers();
-  }
-
   title: string;
-  currentProject: Project;
-  model: any = {};
-  userList: User[] = [];
-  selectedUserList: User[] = [];
 
+  currentProject: Project;
+
+  allUsers: User[] = [];
+  addedUsers: User[] = [];
+
+  usersToAdd: User[] = [];
+  usersToRemove: User[] = [];
 
   constructor(private userService: UserService,
               private projectService: ProjectService) {}
@@ -32,11 +30,10 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.currentProject = this.projectService.getCurrentProject();
 
     if (this.currentProject.userList != null){
-      this.selectedUserList = this.currentProject.userList;
+      this.addedUsers = this.currentProject.userList;
     }
     this.userService.getAllUsers().subscribe((users: User[]) => {
-      this.userList = users;
-      this.filterUserlist();
+      this.filterUserlist(users);
     },()=>{
 
     },()=>{
@@ -44,46 +41,47 @@ export class ProjectComponent implements OnInit, OnDestroy {
     });
   }
 
-  filterUserlist(){
-    for (let user of this.selectedUserList) {
-      for (let filterIndex of this.userList) {
+  ngOnDestroy(){
+    this.saveUsers();
+  }
+
+  filterUserlist(users: User[]){
+    this.allUsers = users;
+    for (let user of this.addedUsers) {
+      for (let filterIndex of this.allUsers) {
         if (user.id == filterIndex.id) {
-          let index = this.userList.indexOf(filterIndex);
-          this.userList.splice(index, 1);
+          let index = this.allUsers.indexOf(filterIndex);
+          this.allUsers.splice(index, 1);
         }
       }
     }
-
-  }
-
-  addUsers() {
-    if(this.model.selectedUsers) {
-      for(let user of this.model.selectedUsers) {
-        let index = this.userList.indexOf(user);
-        this.userList.splice(index, 1);
-        this.selectedUserList.push(user);
-
-
-      }
-      this.model.selectedUsers = null;
-    }
-
-  }
-
-  removeUser(user: User) {
-    let index = this.selectedUserList.indexOf(user);
-    this.selectedUserList.splice(index, 1);
-    this.userList.push(user);
-    this.model.selectedUsers = null;
   }
 
   saveUsers(){
-    this.currentProject.userList = this.selectedUserList;
+    this.currentProject.userList = this.addedUsers;
     this.projectService.saveCurrentUserListToProject(this.currentProject).subscribe(res =>{
       console.log(res);
     })
+  }
 
+  handleAddUsers() {
+    console.log(this.usersToAdd);
+    this.usersToAdd.forEach(user => {
+      let index = this.allUsers.findIndex(selectedUser => selectedUser.id == user.id);
+      this.allUsers.splice(index, 1);
+      this.addedUsers.push(user);
+    });
+    this.usersToAdd = [];
+  }
 
+  handleRemoveUsers() {
+    console.log(this.usersToRemove);
+    this.usersToRemove.forEach(user => {
+      let index = this.addedUsers.findIndex(selectedUser => selectedUser.id == user.id);
+      this.addedUsers.splice(index, 1);
+      this.allUsers.push(user);
+    });
+    this.usersToRemove = [];
   }
 
 }
