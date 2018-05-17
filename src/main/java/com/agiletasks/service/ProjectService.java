@@ -20,8 +20,7 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-
-    public List<ProjectModel> getAllProjects(){
+    public List<ProjectModel> getAllProjects() {
         List<Project> projects = projectRepository.findAll();
         return convertProjectsToProjectModels(projects);
     }
@@ -31,24 +30,35 @@ public class ProjectService {
         return convertProjectsToProjectModels(projects);
     }
 
+    public ProjectModel createProject(ProjectModel projectModel) {
+        Project project = projectRepository.save(new Project(projectModel));
+        return new ProjectModel(project);
+    }
+
+    public ProjectModel updateProject(ProjectModel projectModel) {
+        Project project = projectRepository.findOne(projectModel.getId());
+        project.setProjectName(projectModel.getProjectName());
+        project.setCreatedById(projectModel.getCreatedById());
+        project.setStartDate(projectModel.getStartDate());
+        project.setEndDate(projectModel.getEndDate());
+        project.setSprintList(project.convertSprintModelsToSprints(projectModel.getSprintList()));
+        project.setUserList(project.convertUserModelsToUsers(projectModel.getUserList()));
+        return new ProjectModel(projectRepository.save(project));
+    }
+
+    public void deleteProject(Long id) {
+        projectRepository.delete(id);
+    }
 
     private List<ProjectModel> convertProjectsToProjectModels(List<Project> projects) {
         List<ProjectModel> projectModels = new ArrayList<>();
-        for(Project project: projects){
+        for (Project project : projects) {
             projectModels.add(new ProjectModel(project));
         }
         return projectModels;
     }
 
-    public ProjectModel createProject(ProjectModel projectModel) {
-            Project project = projectRepository.save(new Project(projectModel));
-            return new ProjectModel(project);
-    }
-
-    public ProjectModel saveUserListToProject(ProjectModel projectModel) {
-        Project oldProject = projectRepository.findOne(projectModel.getId());
-        oldProject.setUserList(projectModel.getUserList());
-        Project newProject = projectRepository.save(oldProject);
-        return new ProjectModel(newProject);
+    public ProjectModel getProjectById(Long id) {
+        return new ProjectModel(projectRepository.findOne(id));
     }
 }

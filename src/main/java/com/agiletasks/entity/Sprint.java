@@ -1,8 +1,13 @@
 package com.agiletasks.entity;
 
+import com.agiletasks.model.SprintModel;
+import com.agiletasks.model.TaskModel;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "sprints")
@@ -22,14 +27,29 @@ public class Sprint implements Serializable {
     @Column(name = "end_date")
     private String endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project")
-    private Project project;
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    private Long projectId;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="sprint")
-    private List<Task> taskList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="sprintId")
+    private Set<Task> taskList = new HashSet<>();
 
     public Sprint() {}
+
+    public Sprint(SprintModel sprintModel) {
+        this.title = sprintModel.getTitle();
+        this.startDate = sprintModel.getStartDate();
+        this.endDate = sprintModel.getEndDate();
+        this.projectId = sprintModel.getProjectId();
+        this.taskList = convertTaskModelsToTasks(sprintModel.getTaskList());
+    }
+
+    private Set<Task> convertTaskModelsToTasks(Set<TaskModel> taskModels) {
+        Set<Task> tasks = new HashSet<>();
+        for(TaskModel taskModel : taskModels) {
+            tasks.add(new Task(taskModel));
+        }
+        return tasks;
+    }
 
     public Long getId() {
         return id;
@@ -63,19 +83,19 @@ public class Sprint implements Serializable {
         this.endDate = endDate;
     }
 
-    public Project getProject() {
-        return project;
+    public Long getProjectId() {
+        return projectId;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
-    public List<Task> getTaskList() {
+    public Set<Task> getTaskList() {
         return taskList;
     }
 
-    public void setTaskList(List<Task> taskList) {
+    public void setTaskList(Set<Task> taskList) {
         this.taskList = taskList;
     }
 }

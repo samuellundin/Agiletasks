@@ -1,6 +1,10 @@
 package com.agiletasks.model;
 
+import com.agiletasks.entity.Project;
 import com.agiletasks.entity.User;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserModel {
 
@@ -10,6 +14,8 @@ public class UserModel {
     private String lastName;
     private String password;
     private String image;
+    private Set<ProjectModel> projectList;
+    private Set<TaskModel> taskList;
 
     public UserModel() {}
 
@@ -20,6 +26,14 @@ public class UserModel {
         this.lastName = user.getLastName();
         this.password = user.getPassword();
         this.image = user.getImage();
+    }
+
+    private Set<ProjectModel> convertProjectsToProjectModels(Set<Project> projects) {
+        Set<ProjectModel> projectModels = new HashSet<>();
+        for(Project project : projects) {
+            projectModels.add(new ProjectModel(project));
+        }
+        return projectModels;
     }
 
     public Long getId() {
@@ -68,5 +82,21 @@ public class UserModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<ProjectModel> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(Set<ProjectModel> projectList) {
+        this.projectList = projectList;
+    }
+
+    public Set<TaskModel> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(Set<TaskModel> taskList) {
+        this.taskList = taskList;
     }
 }

@@ -1,10 +1,15 @@
 package com.agiletasks.entity;
 
 import com.agiletasks.model.ProjectModel;
+import com.agiletasks.model.SprintModel;
+import com.agiletasks.model.UserModel;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -28,11 +33,11 @@ public class Project {
     @Column(name = "created_by")
     private Long createdById;
 
-    @OneToMany(mappedBy = "project")
-    private List<Sprint> sprintList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId")
+    private Set<Sprint> sprintList = new HashSet<>();
 
     @ManyToMany(mappedBy = "projectList")
-    private List<User> userList = new ArrayList<>();
+    private Set<User> userList = new HashSet<>();
 
     public Project() {}
 
@@ -42,7 +47,24 @@ public class Project {
         this.startDate = projectModel.getStartDate();
         this.endDate = projectModel.getEndDate();
         this.createdById = projectModel.getCreatedById();
+        this.sprintList = convertSprintModelsToSprints(projectModel.getSprintList());
+        this.userList = convertUserModelsToUsers(projectModel.getUserList());
+    }
 
+    public Set<Sprint> convertSprintModelsToSprints(Set<SprintModel> sprintModels) {
+        Set<Sprint> sprints = new HashSet<>();
+        for(SprintModel sprintModel : sprintModels) {
+            sprints.add(new Sprint(sprintModel));
+        }
+        return sprints;
+    }
+
+    public Set<User> convertUserModelsToUsers(Set<UserModel> userModels) {
+        Set<User> users = new HashSet<>();
+        for(UserModel userModel : userModels) {
+            users.add(new User(userModel));
+        }
+        return users;
     }
 
     public Long getId() {
@@ -85,19 +107,19 @@ public class Project {
         this.createdById = createdById;
     }
 
-    public List<Sprint> getSprintList() {
+    public Set<Sprint> getSprintList() {
         return sprintList;
     }
 
-    public void setSprintList(List<Sprint> sprintList) {
+    public void setSprintList(Set<Sprint> sprintList) {
         this.sprintList = sprintList;
     }
 
-    public List<User> getUserList() {
+    public Set<User> getUserList() {
         return userList;
     }
 
-    public void setUserList(List<User> userList) {
+    public void setUserList(Set<User> userList) {
         this.userList = userList;
     }
 }

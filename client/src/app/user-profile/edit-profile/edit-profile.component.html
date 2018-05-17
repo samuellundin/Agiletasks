@@ -5,7 +5,7 @@
   <form (ngSubmit)="f.valid && updateUserDetails()" #f="ngForm" novalidate>
     <div class="form-group">
       <label for="firstName">First name: </label>
-      <input class="form-control" id="firstName" type="text" name="firstName" [(ngModel)]="user.firstName"
+      <input class="form-control" id="firstName" type="text" name="firstName" [(ngModel)]="assigned.firstName"
              #firstName="ngModel" minlength="2" required pattern="[a-zA-Z0-9-]+"/>
       <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
         <div>Firstname must be at least 2 characters</div>
@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
       <label for="lastName">Last name: </label>
-      <input class="form-control" id="lastName" type="text" name="lastName" [(ngModel)]="user.lastName"
+      <input class="form-control" id="lastName" type="text" name="lastName" [(ngModel)]="assigned.lastName"
              #lastName="ngModel" minlength="2" required>
       <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
         <div>Lastname must be at least 2 characters</div>
@@ -22,7 +22,7 @@
 
     <div class="form-group">
       <label for="email">Email: </label>
-      <input class="form-control" id="email" type="text" name="email" [(ngModel)]="user.email" #email="ngModel"
+      <input class="form-control" id="email" type="text" name="email" [(ngModel)]="assigned.email" #email="ngModel"
              minlength="6" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
       <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
         <div>You must enter a valid email</div>
@@ -31,7 +31,7 @@
 
     <div class="form-group">
       <label for="image">Image: </label>
-      <input class="form-control" id="image" type="text" name="image" [(ngModel)]="user.image">
+      <input class="form-control" id="image" type="text" name="image" [(ngModel)]="assigned.image">
     </div>
     <div class="form-group">
       <button class="btn btn-success" [disabled]="!f.valid">Update details</button>
@@ -42,7 +42,7 @@
  <form (ngSubmit)="pf.valid && updateUserPassword()" #pf="ngForm" novalidate>
     <div class="form-group">
       <label for="password">New password: </label>
-      <input class="form-control" id="password" type="password" name="password" [(ngModel)]="user.password"
+      <input class="form-control" id="password" type="password" name="password" [(ngModel)]="assigned.password"
              #password="ngModel" minlength="4" required pattern="[a-zA-Z0-9-]+">
       <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
         <div>Password must be at least 4 characters</div>
@@ -51,7 +51,7 @@
     <div class="form-group">
       <label for="confirmPassword">Confrim password: </label>
       <input class="form-control" id="confirmPassword" type="password" name="confirmPassword"
-             [(ngModel)]="user.confirmPassword"
+             [(ngModel)]="assigned.confirmPassword"
              #confirmPassword="ngModel" required/>
       <div *ngIf="!confirmPasswords() && (confirmPassword.dirty || confirmPassword.touched) "
            class="alert alert-danger">

@@ -9,15 +9,16 @@ public class TaskModel {
     private String title;
     private String description;
     private Status status;
-    private SprintModel sprintModel;
-    private UserModel userModel;
+    private Long sprintId;
+    private UserModel assigned;
 
     public TaskModel(Task task) {
         this.id = task.getId();
         this.title = task.getTitle();
         this.description = task.getDescription();
         this.status = task.getStatus();
-        this.userModel = new UserModel(task.getUser());
+        this.sprintId = task.getSprintId();
+        this.assigned = new UserModel(task.getAssigned());
     }
 
     public TaskModel() {}
@@ -54,19 +55,19 @@ public class TaskModel {
         this.status = status;
     }
 
-    public SprintModel getSprintModel() {
-        return sprintModel;
+    public Long getSprintId() {
+        return sprintId;
     }
 
-    public void setSprintModel(SprintModel sprintModel) {
-        this.sprintModel = sprintModel;
+    public void setSprintId(Long sprintId) {
+        this.sprintId = sprintId;
     }
 
-    public UserModel getUserModel() {
-        return userModel;
+    public UserModel getAssigned() {
+        return assigned;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setAssigned(UserModel assigned) {
+        this.assigned = assigned;
     }
 }

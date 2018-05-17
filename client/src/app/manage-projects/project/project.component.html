@@ -11,8 +11,8 @@
 <div class="row">
   <div class="col">
     <select multiple class="form-control" id="exampleFormControlSelect2" [(ngModel)]="usersToAdd">
-      <option *ngFor="let user of allUsers" [ngValue]="user">
-        {{user.firstName}} {{user.lastName}}
+      <option *ngFor="let assigned of allUsers" [ngValue]="assigned">
+        {{assigned.firstName}} {{assigned.lastName}}
       </option>
     </select>
   </div>
@@ -30,8 +30,8 @@
 
   <div class="col">
     <select multiple class="form-control" [(ngModel)]="usersToRemove">
-      <option *ngFor="let user of addedUsers" [ngValue]="user">
-        {{user.firstName}} {{user.lastName}}
+      <option *ngFor="let assigned of addedUsers" [ngValue]="assigned">
+        {{assigned.firstName}} {{assigned.lastName}}
       </option>
     </select>
   </div>

@@ -1,10 +1,16 @@
 package com.agiletasks.entity;
 
+import com.agiletasks.model.ProjectModel;
+import com.agiletasks.model.TaskModel;
 import com.agiletasks.model.UserModel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,14 +36,16 @@ public class User implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "project_user",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "project_id") })
-    private List<Project> projectList;
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private Set<Project> projectList = new HashSet<>();
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="user")
-    private List<Task> taskList;
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="assigned")
+    private Set<Task> taskList = new HashSet<>();
+
+    public User() {}
 
     public User(UserModel userModel) {
         this.email = userModel.getEmail();
@@ -45,9 +53,29 @@ public class User implements Serializable {
         this.firstName = userModel.getFirstName();
         this.lastName = userModel.getLastName();
         this.image = userModel.getImage();
+        if(userModel.getProjectList() != null) {
+            this.projectList = convertProjectModelsToProjects(userModel.getProjectList());
+        }
+        if(userModel.getTaskList() != null) {
+            this.taskList = convertTaskModelsToTasks(userModel.getTaskList());
+        }
     }
 
-    public User() {}
+    private Set<Project> convertProjectModelsToProjects(Set<ProjectModel> projectModels) {
+        Set<Project> projects = new HashSet<>();
+        for(ProjectModel projectModel : projectModels) {
+            projects.add(new Project(projectModel));
+        }
+        return projects;
+    }
+
+    private Set<Task> convertTaskModelsToTasks(Set<TaskModel> taskModels) {
+        Set<Task> tasks = new HashSet<>();
+        for(TaskModel taskModel : taskModels) {
+            tasks.add(new Task(taskModel));
+        }
+        return tasks;
+    }
 
     public Long getId() {
         return id;
@@ -97,19 +125,19 @@ public class User implements Serializable {
         this.image = image;
     }
 
-    public List<Project> getProjectList() {
+    public Set<Project> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(List<Project> projectList) {
+    public void setProjectList(Set<Project> projectList) {
         this.projectList = projectList;
     }
 
-    public List<Task> getTaskList() {
+    public Set<Task> getTaskList() {
         return taskList;
     }
 
-    public void setTaskList(List<Task> taskList) {
+    public void setTaskList(Set<Task> taskList) {
         this.taskList = taskList;
     }
 }

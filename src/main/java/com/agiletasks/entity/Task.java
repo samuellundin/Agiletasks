@@ -1,5 +1,7 @@
 package com.agiletasks.entity;
 
+import com.agiletasks.model.TaskModel;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,15 +24,22 @@ public class Task implements Serializable {
     @Column(name = "status")
     private Status status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sprint")
-    private Sprint sprint;
+    @JoinColumn(name = "sprint_id", referencedColumnName = "id")
+    private Long sprintId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
-    private User user;
+    @JoinColumn(name = "assigned")
+    private User assigned;
 
     public Task() {}
+
+    public Task(TaskModel taskModel) {
+        this.title = taskModel.getTitle();
+        this.description = taskModel.getDescription();
+        this.status = taskModel.getStatus();
+        this.sprintId = taskModel.getSprintId();
+        this.assigned = new User(taskModel.getAssigned());
+    }
 
     public Long getId() {
         return id;
@@ -64,19 +73,19 @@ public class Task implements Serializable {
         this.status = status;
     }
 
-    public Sprint getSprint() {
-        return sprint;
+    public Long getSprintId() {
+        return sprintId;
     }
 
-    public void setSprint(Sprint sprint) {
-        this.sprint = sprint;
+    public void setSprintId(Long sprintId) {
+        this.sprintId = sprintId;
     }
 
-    public User getUser() {
-        return user;
+    public User getAssigned() {
+        return assigned;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAssigned(User assigned) {
+        this.assigned = assigned;
     }
 }
