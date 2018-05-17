@@ -43,7 +43,7 @@ public class Sprint implements Serializable {
         this.taskList = convertTaskModelsToTasks(sprintModel.getTaskList());
     }
 
-    private Set<Task> convertTaskModelsToTasks(Set<TaskModel> taskModels) {
+    public Set<Task> convertTaskModelsToTasks(Set<TaskModel> taskModels) {
         Set<Task> tasks = new HashSet<>();
         for(TaskModel taskModel : taskModels) {
             tasks.add(new Task(taskModel));
