@@ -6,6 +6,13 @@
   border-radius: 25px;
   margin-top: 20px;
   width: 180px;
+}
+
+.get-started-button:hover{
+  color: #fe1818 !important;
+  background-color: #ffffff !important;
+  border-color: #fe1818 !important;
 
 }
+
 
