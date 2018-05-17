@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../model/user.model";
+import {AuthenticationService} from "../service/authentication.service";
+import {Router} from "@angular/router";
 
 
 
@@ -11,9 +14,15 @@ export class DashboardComponent implements OnInit {
 
 
 
-  constructor() { }
+  currentUser: User;
+
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.authenticationService.getCurrentUser().subscribe(user => {
+      this.currentUser = user;
+    })
   }
 
 

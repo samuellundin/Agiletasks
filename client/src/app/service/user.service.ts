@@ -10,6 +10,7 @@ export class UserService {
 
 
   registerUser(user: User) {
+    console.log(user);
     return this.http.post(USER.url +"/register", user);
   }
 

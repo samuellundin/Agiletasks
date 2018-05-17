@@ -47,8 +47,14 @@ public class Project {
         this.startDate = projectModel.getStartDate();
         this.endDate = projectModel.getEndDate();
         this.createdById = projectModel.getCreatedById();
-        this.sprintList = convertSprintModelsToSprints(projectModel.getSprintList());
-        this.userList = convertUserModelsToUsers(projectModel.getUserList());
+
+        if(projectModel.getSprintList() != null){
+            this.sprintList = convertSprintModelsToSprints(projectModel.getSprintList());
+        }
+        if(projectModel.getUserList() != null){
+            this.userList = convertUserModelsToUsers(projectModel.getUserList());
+        }
+
     }
 
     public Set<Sprint> convertSprintModelsToSprints(Set<SprintModel> sprintModels) {

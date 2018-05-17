@@ -18,7 +18,7 @@ export class ProjectService {
 
   createProject(project: Project) {
 
-    return this.http.post(PROJECT.url + '/new', project);
+    return this.http.post(PROJECT.url + '/', project);
   }
 
   getCurrentProject(){
