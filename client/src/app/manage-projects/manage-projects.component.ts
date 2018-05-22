@@ -30,9 +30,11 @@ export class ManageProjectsComponent implements OnInit {
     this.authenticationService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
     });
+
     this.projectService.getProjectsByUserId(this.currentUser.id).subscribe((projects: Project[]) => {
       this.projectList = projects;
     });
+
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     });

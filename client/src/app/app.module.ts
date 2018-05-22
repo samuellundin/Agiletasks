@@ -11,7 +11,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './authenication/login/login.component';
 import { RegistrationComponent } from './authenication/registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProjectComponent } from './manage-projects/project/project.component';
 import { ProfileComponent } from './user-profile/profile/profile.component';
 import {AuthenticationGuard} from "./security/authentication.guard";
 import {UserService} from "./service/user.service";
@@ -29,6 +28,7 @@ import { ManageNavbarComponent } from './manage-projects/manage-navbar/manage-na
 import { ManageSprintsComponent } from './manage-projects/manage-navbar/manage-sprints/manage-sprints.component';
 import { ProjectOverviewComponent } from './projects/project-overview/project-overview.component';
 import { NewSprintModal } from './sprint/new-sprint/new-sprint.component';
+import { ManageUsersComponent } from './manage-projects/manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { NewSprintModal } from './sprint/new-sprint/new-sprint.component';
     FooterComponent,
     LoginComponent,
     RegistrationComponent,
-    ProjectComponent,
     ProfileComponent,
     NewProjectComponent,
     UserFilterPipe,
@@ -48,7 +47,8 @@ import { NewSprintModal } from './sprint/new-sprint/new-sprint.component';
     ManageNavbarComponent,
     ManageSprintsComponent,
     ProjectOverviewComponent,
-    NewSprintModal
+    NewSprintModal,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,

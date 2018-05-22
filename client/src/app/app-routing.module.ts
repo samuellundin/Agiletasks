@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ProjectComponent} from "./manage-projects/project/project.component";
 import {ProfileComponent} from "./user-profile/profile/profile.component";
 import {LoginComponent} from "./authenication/login/login.component";
 import {RegistrationComponent} from "./authenication/registration/registration.component";
@@ -12,6 +11,7 @@ import {ManageProjectsComponent} from "./manage-projects/manage-projects.compone
 import {ManageNavbarComponent} from "./manage-projects/manage-navbar/manage-navbar.component";
 import {ManageSprintsComponent} from "./manage-projects/manage-navbar/manage-sprints/manage-sprints.component";
 import {ProjectOverviewComponent} from "./projects/project-overview/project-overview.component";
+import {ManageUsersComponent} from "./manage-projects/manage-users/manage-users.component";
 
 
 
@@ -28,7 +28,7 @@ const appRoutes: Routes = [
   {path: 'manage_project', component: ManageProjectsComponent, children: [
     {path: ':id', component: ManageNavbarComponent, children:[
       {path: '', redirectTo: 'users', pathMatch: 'full'},
-      {path: 'users',  component: ProjectComponent},
+      {path: 'users',  component: ManageUsersComponent},
       {path: 'sprints', component: ManageSprintsComponent},
       {path: 'settings', component: NewProjectComponent}
     ]}

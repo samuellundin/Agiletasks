@@ -1,16 +1,15 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../model/user.model";
-import {UserService} from "../../service/user.service";
-import {AuthenticationService} from "../../service/authentication.service";
-import {ProjectService} from "../../service/project.service";
 import {Project} from "../../model/project.model";
+import {UserService} from "../../service/user.service";
+import {ProjectService} from "../../service/project.service";
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+  selector: 'app-manage-users',
+  templateUrl: './manage-users.component.html',
+  styleUrls: ['./manage-users.component.css']
 })
-export class ProjectComponent implements OnInit, OnDestroy {
+export class ManageUsersComponent implements OnInit, OnDestroy {
 
   title: string;
 
@@ -23,7 +22,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   usersToRemove: User[] = [];
 
   constructor(private userService: UserService,
-              private projectService: ProjectService) {}
+              private projectService: ProjectService) { }
 
   ngOnInit() {
     this.title = "Loading Users...";

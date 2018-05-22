@@ -12,7 +12,7 @@ export class ProjectService {
 
 
   getProjectsByUserId(id: number) {
-    return this.http.get(PROJECT.url + '/' + id);
+    return this.http.get(PROJECT.url + '/all/' + id);
   }
 
 
@@ -30,6 +30,6 @@ export class ProjectService {
 
 
   saveCurrentUserListToProject(project: Project) {
-    return this.http.put(PROJECT.url + '/save_userlist', project);
+    return this.http.put(PROJECT.url + '/', project);
   }
 }

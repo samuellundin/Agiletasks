@@ -1,42 +1,8 @@
-USER:
-id
-email
-password
-firstname
-lastname
-image
-
-PROJECT:
-id
-name
-startDate
-endDAte
-
-SPRINT:
-id
-name
-startDate
-endDate
-
-TASK:
-id
-title
-description
-time
-assignedto
+TODO Manage project view
+Kunna lägga till användare till ett projekt.
+Kunna ändra datum och titel.
 
 
-////TODO
-Toaster finns på Skapande av projekt, fixa på alla. alternativ lägga till en snackbar eller annan toaster.
-Fixa så att man kan lägga till person till project via manage project.
-Fixa så att man kan updatera vilka personer som jobbar på ett project.
-Fixa så att man kan uppdatera settings via manage project.
-Fixa visuals för sprints i manage project.
-Fixa visuals för hur projcts ska se ut.
-Stylea framsidan så att den ser lite roligare ut.
-Fixa så att det finns en defualt bild om man inte har lagt till en profilbild.
-Fixa så att man kan lägga till bilder på profil istället för imgUrl.
 
-
-//TODO buggfix
-När man loggar in direkt så uppdaterars inte navbaren.
+TODO projects view
+Fixa en view där man kan välja projekt
