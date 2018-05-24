@@ -73,6 +73,6 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   }
 
   openAddTaskModal() {
-
+    //TODO: Add task modal
   }
 }
