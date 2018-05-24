@@ -15,6 +15,9 @@ export class ProjectService {
     return this.http.get(PROJECT.url + '/all/' + id);
   }
 
+  updateProject(project: Project) {
+    return this.http.put(PROJECT.url, project);
+  }
 
   createProject(project: Project) {
 

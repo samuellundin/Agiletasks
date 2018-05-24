@@ -1,3 +1,68 @@
-<p>
-  project-overview works!
-</p>
+<div class="row">
+  <label class="ml-3">Select a project:</label>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <select class="form-control" [(ngModel)]="selectedProject" name="selectedProject" (change)="setLists()">
+      <option *ngFor="let project of projects" [ngValue]="project">{{project.projectName}}</option>
+    </select>
+  </div>
+  <div class="col-lg-8 text-right">
+    <button type="button" class="btn btn-outline-dark" (click)="openAddTaskModal()" *ngIf="selectedProject">
+      New task <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" routerLink='/newproject' routerLinkActive="active">
+      New project <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+
+<hr>
+
+<div *ngIf="selectedProject" class="form-row">
+  <ng-template #itemTemplate let-item="item" let-index="index">
+    <app-task-item [task]="item.value"></app-task-item>
+  </ng-template>
+  <div class="col" style="min-height: 50vh">
+    <div class="alert alert-danger text-center" role="alert">
+      ToDo
+    </div>
+    <bs-sortable (onChange)="changeStatus('ToDo', $event)"
+      [(ngModel)]="todoList"
+      [itemTemplate]="itemTemplate"
+      itemClass="sortable-item"
+      itemActiveClass="sortable-item-active"
+      placeholderItem="Drag here"
+      placeholderClass="placeholderStyle, text-center"
+      wrapperClass="sortable-wrapper">
+    </bs-sortable>
+  </div>
+  <div class="col" style="min-height: 50vh">
+    <div class="alert alert-warning text-center" role="alert">
+      In progress
+    </div>
+    <bs-sortable (onChange)="changeStatus('InProgress', $event)"
+      [(ngModel)]="progressList"
+      [itemTemplate]="itemTemplate"
+      itemClass="sortable-item"
+      itemActiveClass="sortable-item-active"
+      placeholderItem="Drag here"
+      placeholderClass="sortable-item, text-center"
+      wrapperClass="sortable-wrapper">
+    </bs-sortable>
+  </div>
+  <div class="col" style="min-height: 50vh">
+    <div class="alert alert-success text-center" role="alert">
+      Done
+    </div>
+    <bs-sortable (onChange)="changeStatus('Done', $event)"
+      [(ngModel)]="doneList"
+      [itemTemplate]="itemTemplate"
+      itemClass="sortable-item"
+      itemActiveClass="sortable-item-active"
+      placeholderItem="Drag here"
+      placeholderClass="placeholderStyle, text-center"
+      wrapperClass="sortable-wrapper">
+    </bs-sortable>
+  </div>
+</div>

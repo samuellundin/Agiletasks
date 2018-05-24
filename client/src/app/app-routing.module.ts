@@ -9,7 +9,6 @@ import {NewProjectComponent} from "./manage-projects/new-project/new-project.com
 import {EditProfileComponent} from "./user-profile/edit-profile/edit-profile.component";
 import {ManageProjectsComponent} from "./manage-projects/manage-projects.component";
 import {ManageNavbarComponent} from "./manage-projects/manage-navbar/manage-navbar.component";
-import {ManageSprintsComponent} from "./manage-projects/manage-navbar/manage-sprints/manage-sprints.component";
 import {ProjectOverviewComponent} from "./projects/project-overview/project-overview.component";
 import {ManageUsersComponent} from "./manage-projects/manage-users/manage-users.component";
 
@@ -29,7 +28,6 @@ const appRoutes: Routes = [
     {path: ':id', component: ManageNavbarComponent, children:[
       {path: '', redirectTo: 'users', pathMatch: 'full'},
       {path: 'users',  component: ManageUsersComponent},
-      {path: 'sprints', component: ManageSprintsComponent},
       {path: 'settings', component: NewProjectComponent}
     ]}
   ]}

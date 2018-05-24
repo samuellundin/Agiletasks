@@ -18,7 +18,6 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long id;
 
     @Column(name = "email")
@@ -36,28 +35,20 @@ public class User implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "project_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id"))
+    @ManyToMany(mappedBy = "userList")
     private Set<Project> projectList = new HashSet<>();
-
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="assigned")
-    private Set<Task> taskList = new HashSet<>();
 
     public User() {}
 
     public User(UserModel userModel) {
+        this.id = userModel.getId();
         this.email = userModel.getEmail();
         this.password = userModel.getPassword();
         this.firstName = userModel.getFirstName();
         this.lastName = userModel.getLastName();
         this.image = userModel.getImage();
         if(userModel.getProjectList() != null) {
-            this.projectList = convertProjectModelsToProjects(userModel.getProjectList());
-        }
-        if(userModel.getTaskList() != null) {
-            this.taskList = convertTaskModelsToTasks(userModel.getTaskList());
+            setProjectList(convertProjectModelsToProjects(userModel.getProjectList()));
         }
     }
 
@@ -130,14 +121,8 @@ public class User implements Serializable {
     }
 
     public void setProjectList(Set<Project> projectList) {
-        this.projectList = projectList;
+        this.projectList.clear();
+        this.projectList.addAll(projectList);
     }
 
-    public Set<Task> getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(Set<Task> taskList) {
-        this.taskList = taskList;
-    }
 }

@@ -24,12 +24,11 @@ public class Task implements Serializable {
     @Column(name = "status")
     private Status status;
 
-    @JoinColumn(name = "sprint_id", referencedColumnName = "id")
-    private Long sprintId;
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    private Long projectId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assigned")
-    private User assigned;
+    @Column(name = "username")
+    private String username;
 
     public Task() {}
 
@@ -37,8 +36,8 @@ public class Task implements Serializable {
         this.title = taskModel.getTitle();
         this.description = taskModel.getDescription();
         this.status = taskModel.getStatus();
-        this.sprintId = taskModel.getSprintId();
-        this.assigned = new User(taskModel.getAssigned());
+        this.projectId = taskModel.getProjectId();
+        this.username = taskModel.getUsername();
     }
 
     public Long getId() {
@@ -73,19 +72,19 @@ public class Task implements Serializable {
         this.status = status;
     }
 
-    public Long getSprintId() {
-        return sprintId;
+    public Long getProjectId() {
+        return projectId;
     }
 
-    public void setSprintId(Long sprintId) {
-        this.sprintId = sprintId;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
-    public User getAssigned() {
-        return assigned;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAssigned(User assigned) {
-        this.assigned = assigned;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

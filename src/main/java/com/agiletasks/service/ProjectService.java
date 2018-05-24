@@ -41,7 +41,7 @@ public class ProjectService {
         project.setCreatedById(projectModel.getCreatedById());
         project.setStartDate(projectModel.getStartDate());
         project.setEndDate(projectModel.getEndDate());
-        project.setSprintList(project.convertSprintModelsToSprints(projectModel.getSprintList()));
+        project.setTaskList(project.convertTaskModelsToTasks(projectModel.getTaskList()));
         project.setUserList(project.convertUserModelsToUsers(projectModel.getUserList()));
         return new ProjectModel(projectRepository.save(project));
     }

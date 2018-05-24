@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
 import {IMyDpOptions} from "angular4-datepicker/src/my-date-picker/index";
-import {Sprint} from "../../model/sprint.model";
 import {Subject} from "rxjs/Subject";
 
 @Component({
@@ -42,12 +41,7 @@ export class NewSprintModal implements OnInit {
   }
 
   handleCreateSprint() {
-    let sprint: Sprint = new Sprint();
-    sprint.title = this.title;
-    sprint.startDate = this.startDate.formatted;
-    sprint.endDate = this.endDate.formatted;
-    sprint.taskList = [];
-    this.onClose.next(sprint);
+
     this.bsModalRef.hide();
   }
 

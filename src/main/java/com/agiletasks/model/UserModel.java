@@ -15,7 +15,6 @@ public class UserModel {
     private String password;
     private String image;
     private Set<ProjectModel> projectList;
-    private Set<TaskModel> taskList;
 
     public UserModel() {}
 
@@ -92,11 +91,4 @@ public class UserModel {
         this.projectList = projectList;
     }
 
-    public Set<TaskModel> getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(Set<TaskModel> taskList) {
-        this.taskList = taskList;
-    }
 }

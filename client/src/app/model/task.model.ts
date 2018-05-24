@@ -5,6 +5,6 @@ export class Task{
   name: string;
   description: string;
   status: string;
-  assignedTo: string;
+  username: string;
 
 }

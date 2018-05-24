@@ -1,12 +1,10 @@
 package com.agiletasks.model;
 
 import com.agiletasks.entity.Project;
-import com.agiletasks.entity.Sprint;
+import com.agiletasks.entity.Task;
 import com.agiletasks.entity.User;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ProjectModel {
@@ -16,7 +14,7 @@ public class ProjectModel {
     private String startDate;
     private String endDate;
     private Long createdById;
-    private Set<SprintModel> sprintList;
+    private Set<TaskModel> taskList;
     private Set<UserModel> userList;
 
     public ProjectModel() {}
@@ -27,16 +25,16 @@ public class ProjectModel {
         this.startDate = project.getStartDate();
         this.endDate = project.getEndDate();
         this.createdById = project.getCreatedById();
-        this.sprintList = convertSprintsToSprintModels(project.getSprintList());
+        this.taskList = convertTasksToTaskModels(project.getTaskList());
         this.userList = convertUsersToUserModels(project.getUserList());
     }
 
-    private Set<SprintModel> convertSprintsToSprintModels(Set<Sprint> sprints) {
-        Set<SprintModel> sprintModels = new HashSet<>();
-        for(Sprint sprint : sprints) {
-            sprintModels.add(new SprintModel(sprint));
+    private Set<TaskModel> convertTasksToTaskModels(Set<Task> tasks) {
+        Set<TaskModel> taskModels = new HashSet<>();
+        for(Task task : tasks) {
+            taskModels.add(new TaskModel(task));
         }
-        return sprintModels;
+        return taskModels;
     }
 
     private Set<UserModel> convertUsersToUserModels(Set<User> users) {
@@ -87,12 +85,12 @@ public class ProjectModel {
         this.createdById = createdById;
     }
 
-    public Set<SprintModel> getSprintList() {
-        return sprintList;
+    public Set<TaskModel> getTaskList() {
+        return taskList;
     }
 
-    public void setSprintList(Set<SprintModel> sprintList) {
-        this.sprintList = sprintList;
+    public void setTaskList(Set<TaskModel> taskList) {
+        this.taskList = taskList;
     }
 
     public Set<UserModel> getUserList() {

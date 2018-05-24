@@ -58,7 +58,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
 
   saveUsers(){
     this.currentProject.userList = this.addedUsers;
-    this.projectService.saveCurrentUserListToProject(this.currentProject).subscribe(res =>{
+    this.projectService.updateProject(this.currentProject).subscribe(res => {
       console.log(res);
     })
   }

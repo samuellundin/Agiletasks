@@ -1,5 +1,5 @@
-import {Sprint} from "./sprint.model";
 import {User} from "./user.model";
+import {Task} from "./task.model";
 
 export class Project {
 
@@ -8,7 +8,7 @@ export class Project {
   startDate: string;
   endDate: string;
   createdById: number;
-  sprintList: Sprint[];
-  userList: User[];
+  userList: User[] = [];
+  taskList: Task[] = [];
 
 }

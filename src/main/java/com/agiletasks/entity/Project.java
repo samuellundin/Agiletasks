@@ -1,24 +1,21 @@
 package com.agiletasks.entity;
 
 import com.agiletasks.model.ProjectModel;
-import com.agiletasks.model.SprintModel;
+import com.agiletasks.model.TaskModel;
 import com.agiletasks.model.UserModel;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
 @Entity
 @Table(name = "projects")
-public class Project {
+public class Project implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_id")
     private Long id;
 
     @Column(name = "project_name")
@@ -33,10 +30,11 @@ public class Project {
     @Column(name = "created_by")
     private Long createdById;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId")
-    private Set<Sprint> sprintList = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId", orphanRemoval = true)
+    private Set<Task> taskList = new HashSet<>();
 
-    @ManyToMany(mappedBy = "projectList")
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "project_user", joinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private Set<User> userList = new HashSet<>();
 
     public Project() {}
@@ -47,22 +45,16 @@ public class Project {
         this.startDate = projectModel.getStartDate();
         this.endDate = projectModel.getEndDate();
         this.createdById = projectModel.getCreatedById();
-
-        if(projectModel.getSprintList() != null){
-            this.sprintList = convertSprintModelsToSprints(projectModel.getSprintList());
-        }
-        if(projectModel.getUserList() != null){
-            this.userList = convertUserModelsToUsers(projectModel.getUserList());
-        }
-
+        setTaskList(convertTaskModelsToTasks(projectModel.getTaskList()));
+        setUserList(convertUserModelsToUsers(projectModel.getUserList()));
     }
 
-    public Set<Sprint> convertSprintModelsToSprints(Set<SprintModel> sprintModels) {
-        Set<Sprint> sprints = new HashSet<>();
-        for(SprintModel sprintModel : sprintModels) {
-            sprints.add(new Sprint(sprintModel));
+    public Set<Task> convertTaskModelsToTasks(Set<TaskModel> taskModels) {
+        Set<Task> tasks = new HashSet<>();
+        for(TaskModel taskModel : taskModels) {
+            tasks.add(new Task(taskModel));
         }
-        return sprints;
+        return tasks;
     }
 
     public Set<User> convertUserModelsToUsers(Set<UserModel> userModels) {
@@ -113,12 +105,13 @@ public class Project {
         this.createdById = createdById;
     }
 
-    public Set<Sprint> getSprintList() {
-        return sprintList;
+    public Set<Task> getTaskList() {
+        return taskList;
     }
 
-    public void setSprintList(Set<Sprint> sprintList) {
-        this.sprintList = sprintList;
+    public void setTaskList(Set<Task> taskList) {
+        this.taskList.clear();
+        this.taskList.addAll(taskList);
     }
 
     public Set<User> getUserList() {

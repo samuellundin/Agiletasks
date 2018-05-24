@@ -31,8 +31,8 @@ public class TaskService {
         task.setTitle(taskModel.getTitle());
         task.setDescription(taskModel.getDescription());
         task.setStatus(taskModel.getStatus());
-        task.setSprintId(taskModel.getSprintId());
-        task.setAssigned(new User(taskModel.getAssigned()));
+        task.setProjectId(taskModel.getProjectId());
+        task.setUsername(taskModel.getUsername());
         return new TaskModel(taskRepository.save(task));
     }
 
