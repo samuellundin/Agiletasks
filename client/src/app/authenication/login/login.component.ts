@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {AuthenticationService} from "../../service/authentication.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   unauthorized: boolean = false;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router) { }
+              private router: Router,
+              private toastrService: ToastrService) { }
 
   ngOnInit() {
 
@@ -24,7 +26,9 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model).subscribe(() => {
     },error => {
       this.unauthorized = true;
+      this.toastrService.error("Something went wrong, please try agin!", "Error!");
     }, () => {
+      this.toastrService.success("You are now logged in!", "Congratulations!");
       this.router.navigate(['/dashboard']);
     });
   }

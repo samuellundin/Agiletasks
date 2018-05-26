@@ -11,6 +11,7 @@ import {ManageProjectsComponent} from "./manage-projects/manage-projects.compone
 import {ManageNavbarComponent} from "./manage-projects/manage-navbar/manage-navbar.component";
 import {ProjectOverviewComponent} from "./projects/project-overview/project-overview.component";
 import {ManageUsersComponent} from "./manage-projects/manage-users/manage-users.component";
+import {ManageSettingsComponent} from "./manage-projects/manage-settings/manage-settings.component";
 
 
 
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     {path: ':id', component: ManageNavbarComponent, children:[
       {path: '', redirectTo: 'users', pathMatch: 'full'},
       {path: 'users',  component: ManageUsersComponent},
-      {path: 'settings', component: NewProjectComponent}
+      {path: 'settings', component: ManageSettingsComponent}
     ]}
   ]}
 

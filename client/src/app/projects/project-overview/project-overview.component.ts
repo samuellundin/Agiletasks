@@ -1,10 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {ProjectService} from "../../service/project.service";
 import {Project} from "../../model/project.model";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user.model";
 import {AuthenticationService} from "../../service/authentication.service";
 import {Task} from '../../model/task.model';
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-project-overview',
@@ -17,13 +18,19 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   projects: Project[] = [];
   selectedProject: Project;
   loading: boolean = false;
+  task: Task = new Task;
 
   todoList: Task[] = [];
   progressList: Task[] = [];
   doneList: Task[] = [];
 
+  modalRef: BsModalRef;
+  config = {
+    keyboard: true
+  };
   constructor(private authenticationService: AuthenticationService,
-              private projectService: ProjectService) {}
+              private projectService: ProjectService,
+              private modalService: BsModalService) {}
 
   ngOnInit() {
     this.getCurrentUser();
@@ -72,7 +79,15 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  openAddTaskModal() {
-    //TODO: Add task modal
+  openAddTaskModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+
+  createNewTask(){
+    this.task.status = "ToDo";
+    this.task.projectId = this.selectedProject.id;
+    this.selectedProject.taskList.push(this.task);
+    this.projectService.updateProject(this.selectedProject).subscribe(()=>{});
+    this.modalRef.hide();
   }
 }

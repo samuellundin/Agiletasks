@@ -25,7 +25,7 @@ public class ProjectService {
         return convertProjectsToProjectModels(projects);
     }
 
-    public List<ProjectModel> getProjectsByUserId(Long userId) {
+    public List<ProjectModel> getProjectsCreatedByUserId(Long userId) {
         List<Project> projects = projectRepository.findAllByCreatedById(userId);
         return convertProjectsToProjectModels(projects);
     }
@@ -60,5 +60,10 @@ public class ProjectService {
 
     public ProjectModel getProjectById(Long id) {
         return new ProjectModel(projectRepository.findOne(id));
+    }
+
+    public List<ProjectModel> getProjectsAvailableByUserId(Long userId) {
+        List<Project> projects = projectRepository.findAllByCreatedById(userId);
+        return convertProjectsToProjectModels(projects);
     }
 }

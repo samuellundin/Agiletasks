@@ -8,7 +8,7 @@
     </select>
   </div>
   <div class="col-lg-8 text-right">
-    <button type="button" class="btn btn-outline-dark" (click)="openAddTaskModal()" *ngIf="selectedProject">
+    <button type="button" class="btn btn-outline-dark" (click)="openAddTaskModal(newTask)" *ngIf="selectedProject">
       New task <i class="fa fa-plus-square-o" aria-hidden="true"></i>
     </button>
     <button type="button" class="btn btn-outline-dark" routerLink='/newproject' routerLinkActive="active">
@@ -18,6 +18,8 @@
 </div>
 
 <hr>
+
+
 
 <div *ngIf="selectedProject" class="form-row">
   <ng-template #itemTemplate let-item="item" let-index="index">
@@ -66,3 +68,32 @@
     </bs-sortable>
   </div>
 </div>
+
+
+<ng-template #newTask>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Create a new task</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="taskName">Task name:</label>
+        <input type="email" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="This will be shown at the board" [(ngModel)]="task.title" name="taskName">
+      </div>
+      <div class="form-group">
+        <label for="taskDetails">Task details:</label>
+        <input type="text" class="form-control" id="taskDetails" placeholder="Discribe the task" [(ngModel)]="task.description" name="taskDetails" >
+      </div>
+
+      <div class="form-group">
+        <label for="assigned">Assigned To:</label>
+        <input type="text" class="form-control" id="assigned" placeholder="Unassigned" [(ngModel)]="task.username" name="assigned">
+      </div>
+
+      <button type="submit" class="btn btn-success pull-right" (click)="createNewTask()">Create</button>
+    </form>
+  </div>
+</ng-template>

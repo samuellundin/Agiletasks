@@ -38,8 +38,12 @@ public class ProjectController {
     }
 
     @GetMapping(value = "/all/{id}")
-    public ResponseEntity<List<ProjectModel>> getProjectsByUserId(@PathVariable("id") Long userId) {
-        return new ResponseEntity<>(projectService.getProjectsByUserId(userId), HttpStatus.OK);
+    public ResponseEntity<List<ProjectModel>> getProjectsCreatedByUserId(@PathVariable("id") Long userId) {
+        return new ResponseEntity<>(projectService.getProjectsCreatedByUserId(userId), HttpStatus.OK);
+    }
+    @GetMapping(value = "/all/available/{id}")
+    public ResponseEntity<List<ProjectModel>> getProjectsAvailableByUserId(@PathVariable("id") Long userId) {
+        return new ResponseEntity<>(projectService.getProjectsAvailableByUserId(userId), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")

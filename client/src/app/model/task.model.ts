@@ -2,9 +2,10 @@
 export class Task{
 
   id: number;
-  name: string;
+  title: string;
   description: string;
   status: string;
   username: string;
+  projectId: number;
 
 }
