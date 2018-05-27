@@ -9,6 +9,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {TaskService} from "../../service/task.service";
 import {ToastrService} from "ngx-toastr";
 import {EditTaskModalComponent} from "../../modal/edit-task-modal/edit-task-modal.component";
+import {CreateTaskModalComponent} from "../../modal/create-task-modal/create-task-modal.component";
 
 @Component({
   selector: 'app-project-overview',
@@ -97,10 +98,6 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  openAddTaskModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, this.config);
-  }
-
   createNewTask(){
     this.task.status = "ToDo";
     this.task.projectId = this.selectedProject.id;
@@ -113,6 +110,16 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
       this.toastrService.success("You have created the task: " + this.task.title +"!", "Congratulations!")
     });
     this.modalRef.hide();
+  }
+
+  openAddTaskModal() {
+    this.modalRef = this.modalService.show(CreateTaskModalComponent);
+    this.modalRef.content.taskEmitter.subscribe((task: Task) => {
+      task.projectId = this.selectedProject.id;
+      task.status = "ToDo";
+      this.selectedProject.taskList.push(task);
+      this.updateProject();
+    });
   }
 
   editTask(task: Task) {

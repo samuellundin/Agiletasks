@@ -30,6 +30,7 @@ import {ToastrModule} from "ngx-toastr";
 import { ManageSettingsComponent } from './manage-projects/manage-settings/manage-settings.component';
 import {TaskService} from "./service/task.service";
 import { EditTaskModalComponent } from './modal/edit-task-modal/edit-task-modal.component';
+import { CreateTaskModalComponent } from './modal/create-task-modal/create-task-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EditTaskModalComponent } from './modal/edit-task-modal/edit-task-modal.
     ManageUsersComponent,
     TaskItemComponent,
     ManageSettingsComponent,
-    EditTaskModalComponent
+    EditTaskModalComponent,
+    CreateTaskModalComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,10 @@ import { EditTaskModalComponent } from './modal/edit-task-modal/edit-task-modal.
     multi: true
   }, AuthenticationGuard, UserService, ProjectService, AuthenticationService, TaskService],
   bootstrap: [AppComponent],
-  entryComponents: [EditTaskModalComponent]
+  entryComponents: [
+    CreateTaskModalComponent,
+    EditTaskModalComponent
+  ]
 })
 export class AppModule {
 
