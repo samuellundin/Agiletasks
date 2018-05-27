@@ -29,6 +29,7 @@ import {BsDatepickerModule, SortableModule} from "ngx-bootstrap";
 import {ToastrModule} from "ngx-toastr";
 import { ManageSettingsComponent } from './manage-projects/manage-settings/manage-settings.component';
 import {TaskService} from "./service/task.service";
+import { EditTaskModalComponent } from './modal/edit-task-modal/edit-task-modal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {TaskService} from "./service/task.service";
     ProjectOverviewComponent,
     ManageUsersComponent,
     TaskItemComponent,
-    ManageSettingsComponent
+    ManageSettingsComponent,
+    EditTaskModalComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ import {TaskService} from "./service/task.service";
     multi: true
   }, AuthenticationGuard, UserService, ProjectService, AuthenticationService, TaskService],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [EditTaskModalComponent]
 })
 export class AppModule {
 

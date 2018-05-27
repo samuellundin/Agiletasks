@@ -23,7 +23,7 @@
 
 <div *ngIf="selectedProject" class="form-row">
   <ng-template #itemTemplate let-item="item" let-index="index">
-    <app-task-item [task]="item.value"></app-task-item>
+    <app-task-item [task]="item.value" (edit)="editTask(item.value)"></app-task-item>
   </ng-template>
   <div class="col" style="min-height: 50vh">
     <div class="alert alert-danger text-center" role="alert">
