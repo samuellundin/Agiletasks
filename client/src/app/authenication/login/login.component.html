@@ -15,11 +15,13 @@
       </div>
     </div>
     <div class="col-5 m-auto">
-    <button type="button" class="btn btn-outline-dark form-control mb-2 login-button" (click)="login()">Login</button>
+      <button type="button" class="btn btn-outline-dark form-control mb-2 login-button" (click)="login()">Login</button>
     </div>
   </form>
-  <div *ngIf="unauthorized" class="alert alert-danger">
-    Email or password incorrect
+  <div class="col-5 m-auto">
+    <div *ngIf="unauthorized" class="alert alert-danger">
+      Email or password incorrect
+    </div>
   </div>
   <div class="text-center">
     <p>Don't have an account? <a routerLink="/register">Register</a></p>
