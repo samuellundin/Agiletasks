@@ -1,6 +1,7 @@
 <div class="list-group-item list-group-item-action flex-column align-items-start w-100 m-1 todo-task">
-  <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{task.name}}</h5>
+  <div class="d-flex w-100 justify-content-between mb-1">
+    <h5>{{task.title}}</h5>
+    <a class="h5" (click)="openEditTaskModal()" style="cursor: pointer"><i class="fa fa-edit"></i></a>
   </div>
   <p class="mb-1">{{task.description}}</p>
   <small>Assigned to: <span style="font-weight: bold">{{task.username}}</span></small>

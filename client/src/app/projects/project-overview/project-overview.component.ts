@@ -8,6 +8,7 @@ import {Task} from '../../model/task.model';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {TaskService} from "../../service/task.service";
 import {ToastrService} from "ngx-toastr";
+import {EditTaskModalComponent} from "../../modal/edit-task-modal/edit-task-modal.component";
 
 @Component({
   selector: 'app-project-overview',
@@ -46,13 +47,7 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
       this.selectedProject.taskList.push(...this.todoList);
       this.selectedProject.taskList.push(...this.progressList);
       this.selectedProject.taskList.push(...this.doneList);
-      this.projectService.updateProject(this.selectedProject).subscribe(() => {
-
-      },()=>{
-        this.toastrService.error("Something went wrong, please try agin!", "Error!");
-      },()=>{
-        this.toastrService.success("The project have been updated!", "Congratulations!");
-      });
+      this.updateProject();
     }
   }
 
@@ -61,6 +56,19 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
     this.authenticationService.getCurrentUser().subscribe(currentUser => {
       this.currentUser = currentUser;
       this.getProjects();
+    });
+  }
+
+  updateProject() {
+    this.projectService.updateProject(this.selectedProject).subscribe((project: Project) => {
+      let index = this.projects.findIndex(p => p.id == project.id);
+      this.projects[index] = project;
+      this.selectedProject = project;
+    },()=>{
+      this.toastrService.error("Something went wrong, please try agin!", "Error!");
+    },()=>{
+      this.setLists();
+      this.toastrService.success("The project have been updated!", "Congratulations!");
     });
   }
 
@@ -106,4 +114,20 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
     });
     this.modalRef.hide();
   }
+
+  editTask(task: Task) {
+    let index = this.selectedProject.taskList.findIndex(t => t.id == task.id);
+    this.modalRef = this.modalService.show(EditTaskModalComponent);
+    this.modalRef.content.task = this.selectedProject.taskList[index];
+    this.modalRef.content.taskEmitter.subscribe(t => {
+      if(t == null) {
+        this.selectedProject.taskList.splice(index, 1);
+        this.updateProject();
+      } else {
+        this.selectedProject.taskList[index] = t;
+        this.updateProject();
+      }
+    });
+  }
+
 }

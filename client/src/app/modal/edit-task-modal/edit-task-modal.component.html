@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edit task</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form *ngIf="task">
+    <div class="form-group">
+      <label for="taskName">Task name:</label>
+      <input type="email" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="This will be shown at the board" [(ngModel)]="task.title" name="taskName">
+    </div>
+    <div class="form-group">
+      <label for="taskDetails">Task details:</label>
+      <input type="text" class="form-control" id="taskDetails" placeholder="Discribe the task" [(ngModel)]="task.description" name="taskDetails" >
+    </div>
+
+    <div class="form-group">
+      <label for="assigned">Assigned To:</label>
+      <input type="text" class="form-control" id="assigned" placeholder="Unassigned" [(ngModel)]="task.username" name="assigned">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+  <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+  <button type="button" class="btn btn-success" (click)="save()">Save</button>
+</div>
