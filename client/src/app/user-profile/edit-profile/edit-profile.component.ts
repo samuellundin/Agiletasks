@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../model/user.model";
 import {AuthenticationService} from "../../service/authentication.service";
 import {UserService} from "../../service/user.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,10 +13,9 @@ export class EditProfileComponent implements OnInit {
 
   user: any = {};
 
-
-
   constructor(private authenticationService: AuthenticationService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.authenticationService.getCurrentUser().subscribe(user => {
@@ -31,12 +31,20 @@ export class EditProfileComponent implements OnInit {
   updateUserDetails() {
     this.userService.updateUser(this.user).subscribe( res =>{
       console.log(res);
+    },()=> {
+      this.toastrService.error("Something went wrong, please try agin!", "Error!");
+    }, ()=>{
+      this.toastrService.success("You have updated your profile!","Congratulations!");
     });
   }
 
   updateUserPassword(){
     this.userService.updateUserPassword(this.user).subscribe(res =>{
       console.log(res);
-    })
+    },()=>{
+      this.toastrService.error("Something went wrong, please try agin!", "Error!");
+    },()=>{
+      this.toastrService.success("You have updated your password!","Congratulations!");
+    });
   }
 }
