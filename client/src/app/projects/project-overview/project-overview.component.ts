@@ -7,6 +7,7 @@ import {AuthenticationService} from "../../service/authentication.service";
 import {Task} from '../../model/task.model';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {TaskService} from "../../service/task.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-project-overview',
@@ -32,7 +33,8 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   constructor(private authenticationService: AuthenticationService,
               private projectService: ProjectService,
               private modalService: BsModalService,
-              private taskService: TaskService) {}
+              private taskService: TaskService,
+              private toastrService: ToastrService) {}
 
   ngOnInit() {
     this.getCurrentUser();
@@ -44,7 +46,13 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
       this.selectedProject.taskList.push(...this.todoList);
       this.selectedProject.taskList.push(...this.progressList);
       this.selectedProject.taskList.push(...this.doneList);
-      this.projectService.updateProject(this.selectedProject).subscribe(() => {});
+      this.projectService.updateProject(this.selectedProject).subscribe(() => {
+
+      },()=>{
+        this.toastrService.error("Something went wrong, please try agin!", "Error!");
+      },()=>{
+        this.toastrService.success("The project have been updated!", "Congratulations!");
+      });
     }
   }
 
@@ -91,6 +99,10 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
     this.taskService.createTask(this.task).subscribe((task :Task) =>{
       this.selectedProject.taskList.push(task);
       this.setLists();
+    }, ()=>{
+      this.toastrService.error("Something went wrong, please try agin!", "Error!");
+    }, ()=>{
+      this.toastrService.success("You have created the task: " + this.task.title +"!", "Congratulations!")
     });
     this.modalRef.hide();
   }
