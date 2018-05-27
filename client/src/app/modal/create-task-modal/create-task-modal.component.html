@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Edit task</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <h4 class="modal-title pull-left">Create task</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <form *ngIf="task && users">
+  <form *ngIf="users">
     <div class="form-group">
       <label for="taskName">Task name:</label>
       <input type="email" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="This will be shown at the board" [(ngModel)]="task.title" name="taskName">
@@ -19,13 +19,12 @@
       <label for="assigned">Assigned To:</label>
       <select class="form-control" id="assigned" [(ngModel)]="task.username" name="username">
         <option>Unassigned</option>
-        <option *ngFor="let user of users" [ngValue]="user.firstName +' '+ user.lastName">{{user.firstName}} {{user.lastName}}</option>
+        <option *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</option>
       </select>
     </div>
   </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
-  <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
   <button type="button" class="btn btn-success" (click)="save()">Save</button>
 </div>

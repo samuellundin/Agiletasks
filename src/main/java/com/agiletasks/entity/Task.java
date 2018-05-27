@@ -33,6 +33,7 @@ public class Task implements Serializable {
     public Task() {}
 
     public Task(TaskModel taskModel) {
+        this.id = taskModel.getId();
         this.title = taskModel.getTitle();
         this.description = taskModel.getDescription();
         this.status = taskModel.getStatus();
