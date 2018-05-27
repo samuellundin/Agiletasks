@@ -31,6 +31,10 @@ export class ProjectService {
     this.currentProject = project;
   }
 
+  deleteProject(id: number){
+    return this.http.delete(PROJECT.url + "/" + id);
+  }
+
 
   saveCurrentUserListToProject(project: Project) {
     return this.http.put(PROJECT.url + '/', project);
