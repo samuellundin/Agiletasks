@@ -28,6 +28,7 @@ import { TaskItemComponent } from './task-item/task-item.component';
 import {BsDatepickerModule, SortableModule} from "ngx-bootstrap";
 import {ToastrModule} from "ngx-toastr";
 import { ManageSettingsComponent } from './manage-projects/manage-settings/manage-settings.component';
+import {TaskService} from "./service/task.service";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { ManageSettingsComponent } from './manage-projects/manage-settings/manag
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
     multi: true
-  }, AuthenticationGuard, UserService, ProjectService, AuthenticationService],
+  }, AuthenticationGuard, UserService, ProjectService, AuthenticationService, TaskService],
   bootstrap: [AppComponent],
   entryComponents: []
 })

@@ -6,6 +6,7 @@ import {User} from "../../model/user.model";
 import {AuthenticationService} from "../../service/authentication.service";
 import {Task} from '../../model/task.model';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {TaskService} from "../../service/task.service";
 
 @Component({
   selector: 'app-project-overview',
@@ -30,7 +31,8 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   };
   constructor(private authenticationService: AuthenticationService,
               private projectService: ProjectService,
-              private modalService: BsModalService) {}
+              private modalService: BsModalService,
+              private taskService: TaskService) {}
 
   ngOnInit() {
     this.getCurrentUser();
@@ -86,8 +88,10 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   createNewTask(){
     this.task.status = "ToDo";
     this.task.projectId = this.selectedProject.id;
-    this.selectedProject.taskList.push(this.task);
-    this.projectService.updateProject(this.selectedProject).subscribe(()=>{});
+    this.taskService.createTask(this.task).subscribe((task :Task) =>{
+      this.selectedProject.taskList.push(task);
+      this.setLists();
+    });
     this.modalRef.hide();
   }
 }

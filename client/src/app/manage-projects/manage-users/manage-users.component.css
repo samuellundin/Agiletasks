@@ -1,0 +1,12 @@
+.add-button{
+  background-color: #74c687;
+  border: transparent;
+}
+.remove-button{
+  background-color: #9d1f18;
+  border: transparent;
+}
+
+.icon-color{
+  color: gray;
+}
