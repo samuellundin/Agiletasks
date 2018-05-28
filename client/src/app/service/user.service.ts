@@ -8,16 +8,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-
   registerUser(user: User) {
-    console.log(user);
     return this.http.post(USER.url +"/register", user);
   }
 
   updateUser(user: User){
     return this.http.put(USER.url + "/edit_user", user);
   }
-
 
   getUserByEmail(email: string) {
     return this.http.get(USER.url + '/' + email + '/');
@@ -29,6 +26,9 @@ export class UserService {
 
   updateUserPassword(user: User) {
     return this.http.put(USER.url + "/changePassword", user);
+  }
 
+  getUsersByProjectId(projectId: number) {
+    return this.http.get(USER.url + "/byProjectId/" + projectId);
   }
 }

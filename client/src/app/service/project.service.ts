@@ -15,12 +15,15 @@ export class ProjectService {
     return this.http.get(PROJECT.url + '/all/' + id);
   }
 
+  getAssignedProjectsByUserId(id: number) {
+    return this.http.get(PROJECT.url + '/assigned/' + id);
+  }
+
   updateProject(project: Project) {
     return this.http.put(PROJECT.url, project);
   }
 
   createProject(project: Project) {
-
     return this.http.post(PROJECT.url + '/', project);
   }
 
@@ -35,8 +38,4 @@ export class ProjectService {
     return this.http.delete(PROJECT.url + "/" + id);
   }
 
-
-  saveCurrentUserListToProject(project: Project) {
-    return this.http.put(PROJECT.url + '/', project);
-  }
 }

@@ -23,7 +23,7 @@ export class EditTaskModalComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getAllUsers().subscribe((users: User[]) => {
+    this.userService.getUsersByProjectId(this.task.projectId).subscribe((users: User[]) => {
       this.users = users;
     });
   }

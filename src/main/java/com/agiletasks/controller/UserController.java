@@ -21,9 +21,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     private ResponseEntity<List<UserModel>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/byProjectId/{id}")
+    private ResponseEntity<List<UserModel>> getUsersByProjectId(@PathVariable Long id) {
+        return new ResponseEntity<>(userService.getUsersByProjectId(id), HttpStatus.OK);
     }
 
     @PostMapping("/register")

@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.currentUser = null;
     this.authenticationService.logout();
+    this.ngOnInit();
     if(this.router.url == '/dashboard') {
       location.reload();
     }

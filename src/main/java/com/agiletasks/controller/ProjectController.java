@@ -41,6 +41,12 @@ public class ProjectController {
     public ResponseEntity<List<ProjectModel>> getProjectsCreatedByUserId(@PathVariable("id") Long userId) {
         return new ResponseEntity<>(projectService.getProjectsCreatedByUserId(userId), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/assigned/{id}")
+    public ResponseEntity<List<ProjectModel>> getAssignedProjectsByUserId(@PathVariable("id") Long userId) {
+        return new ResponseEntity<>(projectService.getAssignedProjectsByUserId(userId), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/all/available/{id}")
     public ResponseEntity<List<ProjectModel>> getProjectsAvailableByUserId(@PathVariable("id") Long userId) {
         return new ResponseEntity<>(projectService.getProjectsAvailableByUserId(userId), HttpStatus.OK);

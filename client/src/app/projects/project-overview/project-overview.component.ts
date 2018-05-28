@@ -74,7 +74,7 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   }
 
   getProjects() {
-    this.projectService.getProjectsByUserId(this.currentUser.id).subscribe((projects: Project[]) => {
+    this.projectService.getAssignedProjectsByUserId(this.currentUser.id).subscribe((projects: Project[]) => {
       this.projects = projects;
       console.log(this.projects)
     }, error => {
@@ -113,7 +113,8 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   }
 
   openAddTaskModal() {
-    this.modalRef = this.modalService.show(CreateTaskModalComponent);
+    const initialState = { projectId: this.selectedProject.id };
+    this.modalRef = this.modalService.show(CreateTaskModalComponent, {initialState});
     this.modalRef.content.taskEmitter.subscribe((task: Task) => {
       task.projectId = this.selectedProject.id;
       task.status = "ToDo";
@@ -124,8 +125,8 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
 
   editTask(task: Task) {
     let index = this.selectedProject.taskList.findIndex(t => t.id == task.id);
-    this.modalRef = this.modalService.show(EditTaskModalComponent);
-    this.modalRef.content.task = this.selectedProject.taskList[index];
+    const initialState = { task: this.selectedProject.taskList[index] };
+    this.modalRef = this.modalService.show(EditTaskModalComponent, {initialState});
     this.modalRef.content.taskEmitter.subscribe(t => {
       if(t == null) {
         this.selectedProject.taskList.splice(index, 1);

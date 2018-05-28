@@ -1,10 +1,11 @@
 package com.agiletasks.service;
 
 import com.agiletasks.entity.Project;
+import com.agiletasks.entity.User;
 import com.agiletasks.model.ProjectModel;
 import com.agiletasks.repository.ProjectRepository;
+import com.agiletasks.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,10 +15,12 @@ import java.util.List;
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
+    private final UsersRepository usersRepository;
 
     @Autowired
-    public ProjectService(ProjectRepository projectRepository) {
+    public ProjectService(ProjectRepository projectRepository, UsersRepository usersRepository) {
         this.projectRepository = projectRepository;
+        this.usersRepository = usersRepository;
     }
 
     public List<ProjectModel> getAllProjects() {
@@ -64,6 +67,12 @@ public class ProjectService {
 
     public List<ProjectModel> getProjectsAvailableByUserId(Long userId) {
         List<Project> projects = projectRepository.findAllByCreatedById(userId);
+        return convertProjectsToProjectModels(projects);
+    }
+
+    public List<ProjectModel> getAssignedProjectsByUserId(Long userId) {
+        User user = usersRepository.getOne(userId);
+        List<Project> projects = projectRepository.findAllByUserListContains(user);
         return convertProjectsToProjectModels(projects);
     }
 }

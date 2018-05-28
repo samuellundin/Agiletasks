@@ -13,6 +13,7 @@ export class CreateTaskModalComponent implements OnInit {
 
   task: Task = new Task();
   users: User[] = [];
+  projectId: number;
   taskEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private userService: UserService,
@@ -23,7 +24,7 @@ export class CreateTaskModalComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getAllUsers().subscribe((users: User[]) => {
+    this.userService.getUsersByProjectId(this.projectId).subscribe((users: User[]) => {
       this.users = users;
     });
   }
