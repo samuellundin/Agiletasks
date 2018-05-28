@@ -25,7 +25,6 @@ export class EditProfileComponent implements OnInit {
 
   confirmPasswords(){
     return this.user.password == this.user.confirmPassword;
-
   }
 
   updateUserDetails() {
