@@ -27,7 +27,6 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
   todoList: Task[] = [];
   progressList: Task[] = [];
   doneList: Task[] = [];
-
   modalRef: BsModalRef;
   config = {
     keyboard: true
@@ -98,20 +97,6 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  createNewTask(){
-    this.task.status = "ToDo";
-    this.task.projectId = this.selectedProject.id;
-    this.taskService.createTask(this.task).subscribe((task :Task) =>{
-      this.selectedProject.taskList.push(task);
-      this.setLists();
-    }, ()=>{
-      this.toastrService.error("Something went wrong, please try agin!", "Error!");
-    }, ()=>{
-      this.toastrService.success("You have created the task: " + this.task.title +"!", "Congratulations!")
-    });
-    this.modalRef.hide();
-  }
-
   openAddTaskModal() {
     const initialState = { projectId: this.selectedProject.id };
     this.modalRef = this.modalService.show(CreateTaskModalComponent, {initialState});
@@ -125,7 +110,7 @@ export class ProjectOverviewComponent implements OnInit, OnDestroy {
 
   editTask(task: Task) {
     let index = this.selectedProject.taskList.findIndex(t => t.id == task.id);
-    const initialState = { task: this.selectedProject.taskList[index] };
+    const initialState = { task: JSON.parse(JSON.stringify(this.selectedProject.taskList[index])) };
     this.modalRef = this.modalService.show(EditTaskModalComponent, {initialState});
     this.modalRef.content.taskEmitter.subscribe(t => {
       if(t == null) {

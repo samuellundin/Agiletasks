@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.getCurrentUser().subscribe(user => {
-      this.user = user;
+      this.user = JSON.parse(JSON.stringify(user));
     })
   }
 

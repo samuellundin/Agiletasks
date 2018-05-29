@@ -7,8 +7,8 @@
     <option *ngFor="let project of projectList" [ngValue]="project">{{project.projectName}}</option>
   </select>
   </div>
-  <div class="col-lg-8">
-    <button type="button" class="btn btn-outline-dark pull-right new-project-button" routerLink='/newproject' routerLinkActive="active">New project <i
+  <div class="col-lg-8 text-right">
+    <button type="button" class="btn btn-green" routerLink='/newproject' routerLinkActive="active">New project <i
       class="fa fa-plus-square-o" aria-hidden="true"></i></button>
   </div>
 
