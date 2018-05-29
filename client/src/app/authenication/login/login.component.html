@@ -4,14 +4,14 @@
     <div class="col-5 m-auto">
       <div class="form-group">
         <label for="email">Email: </label>
-        <input class="form-control" id="email" type="text" [(ngModel)]="model.email" #email="ngModel" name="email">
+        <input class="form-control" id="email" type="text" [(ngModel)]="model.email" #email="ngModel" name="email" autocomplete="off">
       </div>
     </div>
     <div class="col-5 m-auto">
       <div class="form-group">
         <label for="password">Password: </label>
         <input class="form-control" id="password" type="password" [(ngModel)]="model.password" #password="ngModel"
-               name="password">
+               name="password" autocomplete="off">
       </div>
     </div>
     <div class="col-5 m-auto">

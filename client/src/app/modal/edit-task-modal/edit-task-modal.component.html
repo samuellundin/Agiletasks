@@ -8,11 +8,11 @@
   <form *ngIf="task && users">
     <div class="form-group">
       <label for="taskName">Task name:</label>
-      <input type="email" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="This will be shown at the board" [(ngModel)]="task.title" name="taskName">
+      <input type="email" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="This will be shown at the board" [(ngModel)]="task.title" name="taskName" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="taskDetails">Task details:</label>
-      <input type="text" class="form-control" id="taskDetails" placeholder="Discribe the task" [(ngModel)]="task.description" name="taskDetails" >
+      <input type="text" class="form-control" id="taskDetails" placeholder="Discribe the task" [(ngModel)]="task.description" name="taskDetails" autocomplete="off">
     </div>
 
     <div class="form-group">

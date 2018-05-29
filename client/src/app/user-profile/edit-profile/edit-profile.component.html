@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="firstName">First name: </label>
           <input class="form-control" id="firstName" type="text" name="firstName" [(ngModel)]="user.firstName"
-                 #firstName="ngModel" minlength="2" required pattern="[a-zA-Z0-9-]+"/>
+                 #firstName="ngModel" minlength="2" required pattern="[a-zA-Z0-9-]+" autocomplete="off"/>
           <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
             <div>Firstname must be at least 2 characters</div>
           </div>
@@ -16,7 +16,7 @@
         <div class="form-group">
           <label for="lastName">Last name: </label>
           <input class="form-control" id="lastName" type="text" name="lastName" [(ngModel)]="user.lastName"
-                 #lastName="ngModel" minlength="2" required>
+                 #lastName="ngModel" minlength="2" required autocomplete="off">
           <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
             <div>Lastname must be at least 2 characters</div>
           </div>
@@ -30,7 +30,7 @@
         <div class="form-group">
           <label for="email">Email: </label>
           <input class="form-control" id="email" type="text" name="email" [(ngModel)]="user.email" #email="ngModel"
-                 minlength="6" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                 minlength="6" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off">
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
             <div>You must enter a valid email</div>
           </div>
@@ -39,7 +39,7 @@
       <div class="col-6">
         <div class="form-group">
           <label for="image">Image: </label>
-          <input class="form-control" id="image" type="text" name="image" [(ngModel)]="user.image">
+          <input class="form-control" id="image" type="text" name="image" [(ngModel)]="user.image" autocomplete="off">
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@
         <div class="form-group">
           <label for="password">New password: </label>
           <input class="form-control" id="password" type="password" name="password" [(ngModel)]="user.password"
-                 #password="ngModel" minlength="4" required pattern="[a-zA-Z0-9-]+">
+                 #password="ngModel" minlength="4" required pattern="[a-zA-Z0-9-]+" autocomplete="off">
           <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
             <div>Password must be at least 4 characters</div>
           </div>
@@ -66,7 +66,7 @@
           <label for="confirmPassword">Confrim password: </label>
           <input class="form-control" id="confirmPassword" type="password" name="confirmPassword"
                  [(ngModel)]="user.confirmPassword"
-                 #confirmPassword="ngModel" required/>
+                 #confirmPassword="ngModel" required autocomplete="off"/>
           <div *ngIf="!confirmPasswords() && (confirmPassword.dirty || confirmPassword.touched) "
                class="alert alert-danger">
             <div>Passwords do not match</div>

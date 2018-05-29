@@ -4,7 +4,7 @@
     <div class="row">
       <div class="form-group col-lg-12">
         <label for="name">Project title:</label>
-        <input id="name" class="form-control" [(ngModel)]="project.projectName" name="name" required>
+        <input id="name" class="form-control" [(ngModel)]="project.projectName" name="name" required autocomplete="off">
       </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
                [(ngModel)]="project.startDate"
                required
-       >
+               autocomplete="off">
       </div>
       <div class="col-xs-12 col-12 col-md-6 form-group">
         <label>end date:</label>
@@ -30,7 +30,7 @@
                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
                [(ngModel)]="project.endDate"
                required
-        >
+               autocomplete="off">
       </div>
     </div>
 
