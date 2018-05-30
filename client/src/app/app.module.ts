@@ -31,6 +31,7 @@ import { ManageSettingsComponent } from './manage-projects/manage-settings/manag
 import {TaskService} from "./service/task.service";
 import { EditTaskModalComponent } from './modal/edit-task-modal/edit-task-modal.component';
 import { CreateTaskModalComponent } from './modal/create-task-modal/create-task-modal.component';
+import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { CreateTaskModalComponent } from './modal/create-task-modal/create-task-
       positionClass: "toast-bottom-right",
       preventDuplicates: true,
     }),
+    ImageCropperModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

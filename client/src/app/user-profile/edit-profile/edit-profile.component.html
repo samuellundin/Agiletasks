@@ -38,8 +38,30 @@
       </div>
       <div class="col-6">
         <div class="form-group">
-          <label for="image">Image: </label>
-          <input class="form-control" id="image" type="text" name="image" [(ngModel)]="user.image" autocomplete="off">
+          <label>Image: </label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" (change)="fileChangeEvent($event)">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
+          <div class="form-row mt-2">
+            <div class="col-8">
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                [resizeToWidth]="128"
+                format="jpeg"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (loadImageFailed)="loadImageFailed()"
+                style="max-height: 33vh"
+                [style.display]="cropperReady ? null : 'none'">
+              </image-cropper>
+            </div>
+            <div class="col-4">
+              <img [src]="croppedImage" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

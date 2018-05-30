@@ -13,7 +13,7 @@
       </div>
       <div class="form-group">
         <label for="description">Task details:</label>
-        <input type="text" class="form-control" id="description" placeholder="Discribe the task" [(ngModel)]="task.description" name="description" #description="ngModel" autocomplete="off" minlength="1" required>
+        <textarea rows="3" class="form-control" id="description" placeholder="Discribe the task" [(ngModel)]="task.description" name="description" #description="ngModel" autocomplete="off" minlength="1" required></textarea>
       </div>
 
       <div class="form-group">

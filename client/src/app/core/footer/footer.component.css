@@ -1,7 +1,7 @@
 footer {
   background-color: #ffffff;
   height: 50px;
-  border-top: rgba(0, 0, 0, 0.15) 1px solid;
+  border-top: red 3px solid;
 }
 .text-center {
   line-height: 3;

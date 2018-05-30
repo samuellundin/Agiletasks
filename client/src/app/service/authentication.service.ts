@@ -52,4 +52,8 @@ export class AuthenticationService {
     }
     return this.authenticatedUser.asObservable();
   }
+
+  setCurrentUser(user: User) {
+    this.authenticatedUser.next(user);
+  }
 }

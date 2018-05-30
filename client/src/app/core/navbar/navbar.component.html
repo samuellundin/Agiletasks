@@ -14,7 +14,10 @@
     </ul>
     <ul class="navbar-nav my-2 my-lg-0">
       <li *ngIf="currentUser" class="nav-item nav-item-fix">
-        <a class="nav-link navbar-link-fix not-active" routerLink="/profile" routerLinkActive="active">{{currentUser.firstName}} {{currentUser.lastName}}</a>
+        <a class="nav-link navbar-link-fix not-active my-auto mr-1" routerLink="/profile" routerLinkActive="active" style="padding-top: 5px">
+          <img [src]="'data:image/jpg;base64,' + currentUser.image" height="42" style="display: inline" class="my-auto mr-1 mb-1">
+          {{currentUser.firstName}} {{currentUser.lastName}}
+        </a>
       </li>
       <li *ngIf="!currentUser" class="nav-item nav-button-li-fix">
         <a class="nav-button-fix btn btn-outline-primary" routerLink="/auth/login">
@@ -29,4 +32,3 @@
     </ul>
   </div>
 </nav>
-

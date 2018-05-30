@@ -8,13 +8,11 @@
   </select>
   </div>
   <div class="col-lg-8 text-right">
-    <button type="button" class="btn btn-green" routerLink='/newproject' routerLinkActive="active">New project <i
-      class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-green" routerLink='/newproject' routerLinkActive="active">
+      New project <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    </button>
   </div>
-
 </div>
 <hr>
-<h2 class="text-center">{{selectedProject.projectName}}</h2>
-<router-outlet *ngIf="selectedProject?.id"></router-outlet>
-
-
+<h2 class="text-center">{{selectedProject?.projectName}}</h2>
+<router-outlet *ngIf="selectedProject"></router-outlet>

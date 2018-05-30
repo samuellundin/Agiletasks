@@ -5,7 +5,7 @@ html, body {
 .container {
   margin-top: 25px;
   margin-bottom: 25px;
-  height: calc(100% - 156px);
+  min-height: calc(100% - 161px);
 }
 
 .btn-green {
@@ -134,4 +134,13 @@ fieldset[disabled] .btn-blue.active {
 .btn-blue .badge {
   color: #5AAAFF;
   background-color: #ffffff;
+}
+
+.alert-red {
+  background-color: #E87C87;
+  color: #721c24;
+}
+.alert-green {
+  background-color: #74C687;
+  color: #155724;
 }

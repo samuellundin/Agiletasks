@@ -36,13 +36,12 @@ export class ManageProjectsComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     });
-    this.selectedProject = new Project;
   }
 
   getSelectedIdFromProject() {
     this.projectService.setCurrentProject(this.selectedProject);
     this.id = this.selectedProject.id;
-   this.router.navigate([this.id], {relativeTo: this.route});
+    this.router.navigate([this.id], {relativeTo: this.route});
    }
 
 }

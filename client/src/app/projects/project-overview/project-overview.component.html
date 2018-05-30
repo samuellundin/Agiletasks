@@ -18,14 +18,13 @@
 </div>
 
 <hr>
-
 <div *ngIf="selectedProject" class="form-row">
   <ng-template #itemTemplate let-item="item" let-index="index">
     <app-task-item [task]="item.value" (edit)="editTask(item.value)"></app-task-item>
   </ng-template>
-  <div class="col" style="min-height: 50vh">
-    <div class="alert alert-danger text-center" role="alert">
-      ToDo
+  <div class="col-4" style="min-height: 50vh">
+    <div class="alert alert-red text-center" role="alert">
+      <h5 class="mb-0">To Do</h5>
     </div>
     <bs-sortable (onChange)="changeStatus('ToDo', $event)"
       [(ngModel)]="todoList"
@@ -37,9 +36,9 @@
       wrapperClass="sortable-wrapper">
     </bs-sortable>
   </div>
-  <div class="col" style="min-height: 50vh">
+  <div class="col-4" style="min-height: 50vh">
     <div class="alert alert-warning text-center" role="alert">
-      In progress
+      <h5 class="mb-0">In progress</h5>
     </div>
     <bs-sortable (onChange)="changeStatus('InProgress', $event)"
       [(ngModel)]="progressList"
@@ -51,9 +50,9 @@
       wrapperClass="sortable-wrapper">
     </bs-sortable>
   </div>
-  <div class="col" style="min-height: 50vh">
-    <div class="alert alert-success text-center" role="alert">
-      Done
+  <div class="col-4" style="min-height: 50vh">
+    <div class="alert alert-green text-center" role="alert">
+      <h5 class="mb-0">Done</h5>
     </div>
     <bs-sortable (onChange)="changeStatus('Done', $event)"
       [(ngModel)]="doneList"
