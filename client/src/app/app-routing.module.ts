@@ -19,13 +19,13 @@ const appRoutes: Routes = [
 
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'newproject', component: NewProjectComponent},
+  {path: 'newproject', component: NewProjectComponent, canActivate: [AuthenticationGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
   {path: 'auth/login', component: LoginComponent},
-  {path: 'project', component: ProjectOverviewComponent},
+  {path: 'project', component: ProjectOverviewComponent, canActivate: [AuthenticationGuard]},
   {path: 'register', component: RegistrationComponent},
-  {path: 'profile_edit', component: EditProfileComponent},
-  {path: 'manage_project', component: ManageProjectsComponent, children: [
+  {path: 'profile_edit', component: EditProfileComponent, canActivate: [AuthenticationGuard]},
+  {path: 'manage_project', component: ManageProjectsComponent, canActivate: [AuthenticationGuard], children: [
     {path: ':id', component: ManageNavbarComponent, children:[
       {path: '', redirectTo: 'users', pathMatch: 'full'},
       {path: 'users',  component: ManageUsersComponent},
