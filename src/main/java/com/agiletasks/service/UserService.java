@@ -52,7 +52,9 @@ public class UserService {
         oldUser.setEmail(userModel.getEmail());
         oldUser.setFirstName(userModel.getFirstName());
         oldUser.setLastName(userModel.getLastName());
-        oldUser.setImage(userModel.getImage());
+        if(userModel.getImage() != null) {
+            oldUser.setImage(userModel.getImage());
+        }
         userRepository.save(oldUser);
         return new UserModel(oldUser);
     }

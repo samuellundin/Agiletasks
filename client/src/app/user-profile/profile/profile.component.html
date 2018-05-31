@@ -1,39 +1,25 @@
-<div class="row">
-  <div class="offset-2 col-lg-6" >
-    <h3>Profile</h3></div>
-    <div class="col-lg-2"> <a class="pull-right edit-button" routerLink="/profile_edit">Edit <i class="fa fa-cog" aria-hidden="true"></i></a></div>
-</div>
-<div class="row">
-  <div class="offset-2 col-lg-8" >
-    <hr>
+<div class="px-5">
+  <div class="row">
+    <div class="col d-flex justify-content-between">
+      <h3>Profile</h3>
+      <a class="edit-button" routerLink="/profile_edit">Edit <i class="fa fa-cog" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <hr>
+  <div class="row mt-4">
+    <div class="col-2">
+      <img [src]="'data:image/jpg;base64,' + currentUser.image" class="border-radius w-100">
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-10 my-auto">
+      <ul class="list-unstyled mt-2">
+        <li><label class="h5"><strong>First name:</strong> {{currentUser.firstName}}</label></li>
+        <hr>
+        <li><label class="h5"><strong>Last name:</strong> {{currentUser.lastName}}</label></li>
+        <hr>
+        <li><label class="h5"><strong>Email:</strong> {{currentUser.email}}</label></li>
+      </ul>
+    </div>
   </div>
 </div>
-
-<div class="row">
-  <div class="offset-2 col-lg-8" >
-    <label for="firstName" class="bold-text">First name:</label>
-    <p id="firstName">{{currentUser.firstName}}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="offset-2 col-lg-8">
-    <label for="lastName" class="bold-text">Last name:</label>
-    <p id="lastName">{{currentUser.lastName}}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="offset-2 col-lg-8">
-    <label for="lastName" class="bold-text">Email:</label>
-    <p id="email">{{currentUser.email}}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="offset-2 col-lg-8">
-    <label class="bold-text" style="display: block">Image:</label>
-    <img [src]="'data:image/jpg;base64,' + currentUser.image" height="128" class="border-radius">
-    <hr>
-  </div>
-</div>
-
-
-

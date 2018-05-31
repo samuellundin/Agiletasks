@@ -54,6 +54,10 @@ export class AuthenticationService {
   }
 
   setCurrentUser(user: User) {
+    this.currentUser = null;
+    this.authenticatedUser = new BehaviorSubject<any>(null);
+    localStorage.removeItem(CURRENT_USER);
+    localStorage.setItem(CURRENT_USER, JSON.stringify(user));
     this.authenticatedUser.next(user);
   }
 }
