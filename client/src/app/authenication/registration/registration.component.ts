@@ -15,7 +15,6 @@ export class RegistrationComponent implements OnInit {
 
   user: any = {};
 
-
   confirmPassword: string = "";
 
   constructor(private userService: UserService,
@@ -44,8 +43,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   confirmPasswords(){
-    return this.user.password == this.user.confirmPassword;
-
+    return this.user.password != this.user.confirmPassword;
   }
 
 }
